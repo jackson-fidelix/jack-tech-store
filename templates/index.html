@@ -3,21 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página Inicial</title>
+    <title>Jack Tech - Store</title>
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
     <nav id="nav-bar">
-        <ul>
-            <!-- lembrar de usar o url_for nos hrefs -->
-            <a href=""></a>Home
-            <a href=""></a>Sobre Nós
-            <a href=""></a>Cadastro
-            <a href=""></a>Compra
-            <a href=""></a>Venda
+        <div class="menu-icon" onclick="toggleMenu()">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <ul id="nav-links">
+            <!-- lembrar de usar o url_for no href de relatórios -->
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">Sobre Nós</a></li>
+            <li><a href="#register">Cadastro</a></li>
+            <li><a href="#buy">Compra</a></li>
+            <li><a href="#sell">Venda</a></li>
+            <li><a href="url for">Relatórios</a></li>
         </ul>
     </nav>
-    <h1>Jack Tech Store</h1>
-    <h2>Sejam muito Bem-Vindos</h2>
+
+    <div class="apresentation">
+        <div class="welcome">
+            <h1>Bem-vinda à Jack Tech Store</h1>
+            <h2>Controle total do seu estoque de produtos</h2>
+            <p>Com o nosso sistema de cadastro, você pode facilmente gerenciar 
+                o estoque de sua loja. A Jack Tech Sotre oferece uma plataforma 
+                intuitiva para cadastrar, atualizar e controlar seus produtos 
+                em tempo real.</p>
+        </div>
+        <div class="about-us">
+            <h1>Tech Store</h1>
+            <p>A Jack Tech Store é uma loja especializada em produtos de 
+                tecnologia, com foco em oferecer o melhor em eletrônicos, 
+                informática e acessórios. Nosso objetivo é fornecer um sistema
+                eficiente para que você gerencie seu estoque de forma prática
+                e organizada.</p>
+        </div>
+        <div class="about-app">
+            <h1>Sobre o Sistema de Estoque</h1>
+            <p>Nosso sistema é projetado para simplificar o gerencimaento de
+                produtos em sua loja. A plataforma é fácil de usar, rápida e
+                segura, ajudando você a manter sua loja sempre organizada.
+            </p>
+        </div>
+    </div>
 </body>
+<script src="/static/javascript/scripts.js"></script>
 </html>
