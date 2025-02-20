@@ -24,9 +24,9 @@
         </ul>
     </nav>
 
-    <div class="apresentation">
+    <section class="apresentation">
         <div class="welcome">
-            <h1>Bem-vinda à Jack Tech Store</h1>
+            <h1 id="title">Bem-vinda à Jack Tech Store</h1>
             <h2>Controle total do seu estoque de produtos</h2>
             <p>Com o nosso sistema de cadastro, você pode facilmente gerenciar 
                 o estoque de sua loja. A Jack Tech Sotre oferece uma plataforma 
@@ -34,7 +34,7 @@
                 em tempo real.</p>
         </div>
         <div class="about-us">
-            <h1>Resumo: Jack Tech Store</h1>
+            <h1 id="title">Resumo: Jack Tech Store</h1>
             <p>A Jack Tech Store é uma loja especializada em produtos de 
                 tecnologia, com foco em oferecer o melhor em eletrônicos, 
                 informática e acessórios. Nosso objetivo é fornecer um sistema
@@ -42,15 +42,15 @@
                 e organizada.</p>
         </div>
         <div class="about-app">
-            <h1>Sistema de Estoque</h1>
+            <h1 id="title">Sistema de Estoque</h1>
             <p>Nosso sistema é projetado para simplificar o gerencimaento de
                 produtos em sua loja. A plataforma é fácil de usar, rápida e
                 segura, ajudando você a manter sua loja sempre organizada.
             </p>
         </div>
-    </div>
+    </section>
 
-    <div id="#about" class="about-apresentation">
+    <section id="about" class="about-apresentation">
         <img id="company-img" src="/static/img/company.webp" alt="Sede da Empresa em Orlando, Flórida" width="600" height="700">
 
         <!-- O modal -->
@@ -61,15 +61,47 @@
         </div>
 
         <div class="about-content">
-            <h1>Resumo: Jack Tech Store</h1>
-            <p>A Jack Tech Store é uma loja especializada em produtos de 
-                tecnologia, com foco em oferecer o melhor em eletrônicos, 
-                informática e acessórios. Nosso objetivo é fornecer um sistema
-                eficiente para que você gerencie seu estoque de forma prática
-                e organizada.</p>
-        </div>
-    </div>
+            <h1 id="title">Jack Tech Store</h1>
+            <p>Bem-vindo à Jack Tech Store, sua loja especializada em tecnologia e inovação. 
+                Fundada por Jackson, um apaixonado por tecnologia e formado em BTI com 
+                ênfase em IoT e em Engenharia da Computação, nossa missão é oferecer 
+                o melhor em eletrônicos, informática e acessórios, garantindo que 
+                você tenha acesso às últimas novidades do mundo da tecnologia.</p>
 
+            <p>Na Jack Tech Store, buscamos transformar a experiência de compra, 
+                oferecendo um portfólio diversificado de produtos de qualidade, 
+                que atendem tanto às necessidades de consumidores exigentes 
+                quanto de profissionais da área. Além disso, com nosso sistema 
+                eficiente e inteligente, visamos proporcionar um gerenciamento 
+                de estoque prático e organizado, facilitando a compra e o 
+                acompanhamento dos produtos.</p>
+                
+            <p>Acreditamos que a tecnologia deve ser acessível, prática e, 
+                acima de tudo, confiável. Por isso, nosso compromisso é 
+                entregar não apenas produtos, mas soluções inovadoras 
+                para você. Se você procura qualidade, confiança e excelência
+                 no atendimento, a Jack Tech Store é o lugar certo!</p>
+                
+                
+                
+        </div>
+    </section>
+
+    <section id="register" >
+        <h1 id="title">Cadastro de Produtos</h1>
+        <form id="register-content">
+            <label for="name">Nome:</label>
+            <input type="text" id="name" placeholder="Digite o nome do produto" required><br>
+
+            <label for="cost">Custo (R$):</label>
+            <input type="number" id="cost" step="0.01" placeholder="Digite o custo do produto" required><br>
+
+            <label for="date">Data: </label>
+            <input type="date" id="date" placeholder="Digite data de cada de cadastro"><br>
+
+            <button type="submit">Cadastrar</button>
+        </form>
+    </section>
 </body>
 <script src="/static/javascript/scripts.js"></script>
 </html>
