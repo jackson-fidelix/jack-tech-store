@@ -1,24 +1,40 @@
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: Arial, Helvetica, sans-serif;
     /* PALETA DE CORES
-    azul vibrante   >>  #3939f5
-    azul petróleo   >>  #0C1F4A 
-    laranja         >>  #DB3A02
-    bege            >>  #FABF75
-    caramelo        >>  #885E1E
-    branco          >>  #ffffff
-    preto           >>  #000000
+    azul vibrante   >>  rgb(57, 57, 245)
+    azul petróleo   >>  rgb(12, 31, 74)
+    laranja         >>  rgb(219, 58, 2)
+    bege            >>  rgb(250, 191, 117)
+    branco          >>  rgb(255, 255, 255)
+    preto           >>  rgb(0, 0, 0)
     */
-    background: #ffffff;
+    background: rgb(255, 255, 255);
+}
+
+section {
+    margin: 5rem auto;
+    text-align: center;
+    justify-content: center;
 }
 
 #nav-bar {
+    position: fixed;
+    width: 99%;
     align-items: center;
-    flex-direction: row;
     justify-content: center;
-    background-color: #3939f5;
+    background-color: rgb(219, 58, 2);
     display: flex;
     border-radius: 1rem;
+    top: 0;
+    z-index: 1000;
+    border-color: 1rem linear-gradient(to right #ffffff #000000,);
+    border-style:groove;
+    margin-bottom: 10rem;
+
 }
 
 #nav-bar ul{
@@ -35,15 +51,15 @@ body {
 #nav-bar li a {
     display: flex;
     padding: 10px 20px;
-    color: #ffffff;
+    color: rgb(255, 255, 255);
     text-decoration: none;
     font-size: 2rem;
     font-weight: bold;
 }
 
 #nav-bar li a:hover {
-    background-color: #ffffff;
-    color: #DB3A02;
+    background-color: rgba(0, 0, 0, 0.171);
+    color: rgb(255, 255, 255);
 }
 
 .menu-icon {
@@ -56,8 +72,8 @@ body {
     width: 30px;
     height: 4px;
     margin: 5px 0;
-    background-color: #ffffff;
-    color: #000000;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
 }
 
 /* Deixando as NAV responsiva */
@@ -93,21 +109,20 @@ body {
     flex-direction:row;
     font-size: 1.2rem;
     text-align: justify;
-    color: #ffffff;
+    color: rgb(255, 255, 255);
     border-radius: 15px;
     align-items: center;
     justify-content: center;
     padding: 20px;
     width: auto;
     max-width: 1200px;
-    margin: 20px auto;
     transition: 0.3;
 }
 
 .welcome {
     display: flex;
     flex-direction: column;
-    background-color: #FABF75;
+    background-color: rgb(250, 191, 117);
     border-radius: 15px;
     align-items: center;
     justify-content: center;
@@ -119,7 +134,7 @@ body {
 .about-us {
     display: flex;
     flex-direction: column;
-    background-color: #DB3A02;
+    background-color: rgb(219, 58, 2);
     border-radius: 15px;
     align-items: center;
     justify-content: center;
@@ -131,7 +146,7 @@ body {
 .about-app {
     display: flex;
     flex-direction: column;
-    background-color: #0C1F4A;
+    background-color: rgb(57, 57, 245);
     border-radius: 15px;
     align-items: center;
     justify-content: center;
@@ -144,11 +159,11 @@ body {
     display: flex;
     flex-direction: column;
     border-radius: 20px;
-    background-color: #3939f5;
-    color: #ffffff;
-    margin-left: 20px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    margin-inline: 1.2rem;
     padding: 15px;
-
+    box-shadow: 0.7rem 0.7rem 5rem rgb(57, 57, 245);
 }
 
 .about-apresentation {
@@ -157,17 +172,17 @@ body {
     font-size: 1.2rem;
     text-align: justify;
     border-style:inset;
-    border-color: #DB3A02;
-    border-width: 0.5rem;
+    background-color: rgb(12, 31, 74);
     border-radius: 1rem;
+    border: none;
     align-items: center;
     justify-content: center;
-    padding: 1rem;
+    padding: 2rem;
     width: auto;
     max-width: 1200px;
     margin: 20px auto;
     transition: 0.3;
-    box-shadow: #000000 15px 15px 10px;
+    box-shadow: 0.8rem 0.8rem 5rem rgba(0, 0, 0, 0.7);
 }
 /* Deixando as DIVs responsivas */
 @media(max-width: 768px) {
@@ -234,7 +249,7 @@ body {
     max-width: 700px;
     text-align: center;
     font-weight: bold;
-    color: #DB3A02;
+    color: rgb(219, 58, 2);
     padding: 10px 0;
     height: 100px;
 }
@@ -254,7 +269,7 @@ to {transform: scale(1)}
     position: absolute;
     top: 15px;
     right: 35px;
-    color: #ffffff;
+    color: rgb(255, 255, 255);
     font-size: 4rem;
     font-weight: bold;
     transition: 0.2s;
@@ -262,7 +277,7 @@ to {transform: scale(1)}
 
 .close:focus,
 .close:hover {
-    color: #DB3A02;
+    color: rgb(219, 58, 2);
     text-decoration: none;
     cursor: pointer;
 }
@@ -273,7 +288,31 @@ to {transform: scale(1)}
     }
 }
 
-/* -------- */
-p {
-    font-size: 1.5rem;
+p, label, button {
+    font-size: 1.2rem;
+}
+
+button {
+    margin: auto;
+    padding: .8rem;
+    align-items: center;
+    justify-content: center;
+    width: 40%;
+    max-width: 150px;
+}
+
+#title {
+    font-weight: bold;
+    align-items: center;
+    justify-content: center;
+    text-shadow: .5rem .5rem 1rem rgb(0, 0, 0);
+    font-size: 1.8rem;
+}
+
+#register-content {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 40%;
+    max-width: 400px;
 }
