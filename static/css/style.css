@@ -156,32 +156,33 @@ section {
 }
 
 .about-content {
-    display: flex;
-    flex-direction: column;
+    flex: 1; /* Ocupa o espaço restante */
+    max-width: 50%; /* Garante que o texto não ultrapasse metade da tela */
+    width: clamp(50vw, 90vw, 100%);
+    padding: 2vw;
     border-radius: 20px;
     background-color: rgb(255, 255, 255);
     color: rgb(0, 0, 0);
-    margin-inline: 1.2rem;
-    padding: 15px;
     box-shadow: 0.7rem 0.7rem 5rem rgb(57, 57, 245);
 }
 
+
 .about-apresentation {
     display: flex;
-    flex-direction:row;
+    flex-direction: row;
     font-size: clamp(1rem, 1.5vw, 2vw);
     text-align: justify;
-    border-style:inset;
-    background-color: rgb(12, 31, 74);
     border-radius: 1rem;
     border: none;
     align-items: center;
-    justify-content: center;
-    padding: 2rem;
-    width: auto;
-    max-width: 1200px;
-    margin: 20px auto;
+    justify-content: space-between; /* Separa os elementos dentro da seção */
+    gap: 3rem; /* Espaço entre os itens */
+    padding: 3rem;
+    width: 90%; /* Reduz a largura para dar mais controle */
+    max-width: 1800px; /* Limita a largura máxima */
+    margin: auto;
     transition: 0.3;
+    background-color: rgb(12, 31, 74);
     box-shadow: 0.8rem 0.8rem 5rem rgba(0, 0, 0, 0.7);
 }
 /* Deixando as DIVs responsivas */
@@ -214,9 +215,13 @@ section {
 
 /* formatação de imagem com modal */
 #company-img {
+    width: clamp(400px, 30vw, 800px);
+    max-width: 90vw;
+    height: auto;
     border-radius: 1rem;
     cursor: pointer;
     transition: 0.3;
+    box-shadow: 0.7rem 0.7rem 5rem rgb(57, 57, 245);
 }
 
 #company-img:hover{opacity: 0.5;}
@@ -237,9 +242,10 @@ section {
 
 .modal-content {
     margin: auto;
+    margin-top: clamp(25px, 10%, 150px);
     display: block;
-    width: 70%;
-    max-width: 40rem;
+    width: 80%;
+    max-width: 50rem;
 }
 
 #caption {
@@ -267,7 +273,7 @@ to {transform: scale(1)}
 
 .close {
     position: absolute;
-    top: 15px;
+    top: clamp(25px, 10%, 70px);
     right: 35px;
     color: rgb(255, 255, 255);
     font-size: 4rem;
