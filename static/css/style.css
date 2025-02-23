@@ -107,7 +107,7 @@ section {
 .apresentation {
     display: flex;
     flex-direction:row;
-    font-size: clamp(1vw, 1.5vw, 2vw);
+    font-size: clamp(.8vw, 1.3vw, 1.8vw);
     text-align: justify;
     color: rgb(255, 255, 255);
     border-radius: 15px;
@@ -177,8 +177,8 @@ section {
     align-items: center;
     justify-content: space-between; /* Separa os elementos dentro da seção */
     gap: 3rem; /* Espaço entre os itens */
-    padding: 3rem;
-    width: 90%; /* Reduz a largura para dar mais controle */
+    padding: clamp(1.7rem, 2vw, 3rem);
+    width: 80%;
     max-width: 1800px; /* Limita a largura máxima */
     margin: auto;
     transition: 0.3;
@@ -323,7 +323,11 @@ button {
     align-items: center;
     justify-content: center;
     text-shadow: .5rem .5rem 1rem rgb(0, 0, 0);
-    font-size: clamp(1rem, 1.7vw, 2vw);
+    font-size: clamp(.8vw, 1.3vw, 1.8vw);
+}
+
+p, label {
+    font-size: clamp(1.3rem, 1.2vw, 2rem);  
 }
 
 #register-content {
@@ -338,9 +342,9 @@ button {
 }
 
 input {
-    width: 100%;
+    width: 170%;
     height: 2%;
-    font-size: clamp(1rem, 1.5vw, 2vw);
+    font-size: clamp(1rem, 1.5vw, 2rem);
     border-radius: .5rem;
     border-width: .2rem;
     border-color: rgb(219, 58, 2);
@@ -348,11 +352,13 @@ input {
 }
 
 #default-forms {
+    margin-top: 2rem;
     border-radius: 1rem;
     border-color: rgb(250, 191, 117);
     border-width: .8vw;
-    padding: 1rem;
-    width: 40rem;
+    width: clamp(700px, 50vw, 600px);
+    max-width: 80vw;
+    padding: 1.5rem;
     border-style:groove;
     margin: auto;
 }
