@@ -17,14 +17,14 @@
             <!-- lembrar de usar o url_for no href de relatórios -->
             <li><a href="#home">Home</a></li>
             <li><a href="#about">Sobre Nós</a></li>
-            <li><a href="#register">Cadastro</a></li>
-            <li><a href="#buy">Compra</a></li>
-            <li><a href="#sell">Venda</a></li>
+            <li><a href="#register-form">Cadastro</a></li>
+            <li><a href="#buy-form">Compra</a></li>
+            <li><a href="#sell-form">Venda</a></li>
             <li><a href="url for">Relatórios</a></li>
         </ul>
     </nav>
 
-    <section class="apresentation">
+    <section id="home" class="home">
         <div class="welcome">
             <h1 id="title">Bem-vinda à Jack Tech Store</h1>
             <p>Com o nosso sistema de cadastro, você pode facilmente gerenciar 
@@ -49,7 +49,7 @@
         </div>
     </section>
 
-    <section id="about" class="about-apresentation">
+    <section id="about" class="about-home">
         <img id="company-img" src="/static/img/company.webp" alt="Sede da Empresa em Orlando, Flórida">
 
         <!-- O modal -->
@@ -74,9 +74,8 @@
         </div>
     </section>
 
-    <br><br><br><br>
-
-    <section id="default-forms" >
+    <br>
+    <section id="register-form" >
         <h1 id="register">Cadastro de Produtos - Create</h1>
         <form id="register-content">
             <label for="register_name">Nome:</label>
@@ -95,10 +94,8 @@
             <br>
         </form>
     </section>
-    
-    <br><br><br><br>
 
-    <section id="default-forms" >
+    <section id="buy-form" >
         <h1 id="buy">Compra de Produtos - Update</h1>
         <form id="buy-content">
             <label for="buy_name">Nome:</label>
@@ -118,9 +115,7 @@
         </form>
     </section>
 
-    <br><br><br><br>
-
-    <section id="default-forms" >
+    <section id="sell-form" >
         <h1 id="sell">Venda de Produtos - Update</h1>
         <form id="sell-content">
             <label for="sell_name">Nome:</label>
