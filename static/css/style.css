@@ -34,7 +34,6 @@ section {
     border-color: 1rem linear-gradient(to right #ffffff #000000,);
     border-style:groove;
     margin-bottom: 10rem;
-
 }
 
 #nav-bar ul{
@@ -104,7 +103,7 @@ section {
     }
 }
 
-.apresentation {
+.home {
     display: flex;
     flex-direction:row;
     font-size: clamp(.8vw, 1.3vw, 1.8vw);
@@ -117,6 +116,7 @@ section {
     width: auto;
     max-width: 1200px;
     transition: 0.3;
+    scroll-margin-top: 200px;
 }
 
 .welcome {
@@ -167,7 +167,7 @@ section {
 }
 
 
-.about-apresentation {
+.about-home {
     display: flex;
     flex-direction: row;
     font-size: clamp(1rem, 1.5vw, 2vw);
@@ -184,10 +184,11 @@ section {
     transition: 0.3;
     background-color: rgb(12, 31, 74);
     box-shadow: 0.8rem 0.8rem 5rem rgba(0, 0, 0, 0.7);
+    scroll-margin-top: 60px;
 }
 /* Deixando as DIVs responsivas */
 @media(max-width: 768px) {
-    .apresentation, .about-apresentation {
+    .home, .about-home {
         flex-direction: column;
         width: 90%;
     }
@@ -209,7 +210,7 @@ section {
 }
 
 /* Adicionando animação de zoom para as DIVs */
-.apresentation, .about-apresentation, .welcome, .about-app, .about-us {
+.home, .about-home, .welcome, .about-app, .about-us {
     animation: zoomIn 2s ease-in-out;
 }
 
@@ -351,14 +352,44 @@ input {
     border-style: solid;
 }
 
-#default-forms {
-    margin-top: 2rem;
+#register-form{
     border-radius: 1rem;
     border-color: rgb(250, 191, 117);
     border-width: .8vw;
-    width: clamp(700px, 50vw, 600px);
+    background-color: rgb(250, 191, 117, .2);
+    width: clamp(350px, 50vw, 700px);
     max-width: 80vw;
-    padding: 1.5rem;
+    padding: 1rem;
+    border-style:groove;
+    margin-left: 2rem;
+    box-shadow: .5rem .7rem 2rem rgb(219, 58, 2);
+    scroll-margin-top: 60px;
+}
+
+#buy-form {
+    border-radius: 1rem;
+    border-color: rgb(12, 31, 74);
+    border-width: .8vw;
+    background-color: rgb(12, 31, 74, .3);
+    width: clamp(350px, 50vw, 700px);
+    max-width: 80vw;
+    padding: 1rem;
     border-style:groove;
     margin: auto;
+    box-shadow: .5rem .7rem 2rem rgb(57, 57, 245);
+    scroll-margin-top: 60px;
+}
+
+#sell-form{
+    border-radius: 1rem;
+    border-color: rgb(219, 58, 2);
+    border-width: .8vw;
+    background-color: rgb(219, 58, 2, .2);
+    width: clamp(350px, 50vw, 700px);
+    max-width: 80vw;
+    padding: 1rem;
+    border-style: groove;
+    margin-right: 2rem;
+    box-shadow: 1rem .7rem 2rem rgb(250, 191, 117);
+    scroll-margin-top: 60px;
 }
