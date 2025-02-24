@@ -74,24 +74,72 @@
         </div>
     </section>
 
-    <br><br><br><br><br>
+    <br><br><br><br>
 
     <section id="default-forms" >
-        <h1 id="register">Cadastro de Produtos</h1>
+        <h1 id="register">Cadastro de Produtos - Create</h1>
         <form id="register-content">
-            <label for="name">Nome:</label>
-            <input type="text" id="name" placeholder="Digite o nome do produto" required><br>
+            <label for="register_name">Nome:</label>
+            <input type="text" id="register_name" placeholder="Digite o nome do produto" required><br>
 
-            <label for="cost">Custo (R$):</label>
-            <input type="number" id="cost" step="0.01" placeholder="Digite o custo do produto" required><br>
+            <label for="register_cost">Custo (R$):</label>
+            <input type="number" id="register_cost" step="0.01" placeholder="Digite o custo do produto" required><br>
 
-            <label for="date">Data: </label>
-            <input type="date" id="date" placeholder="Digite data de cada de cadastro"><br><br>
+            <label for="register_amount">Quantidade:</label>
+            <input type="number"  id="register_amount" placeholder="Digite a quantidade do produto"><br>
+
+            <label for="register_date">Data:</label>
+            <input type="date" id="register_date" placeholder="Digite data de cadastro"><br><br>
 
             <button type="submit">Cadastrar</button>
             <br>
         </form>
     </section>
+    
+    <br><br><br><br>
+
+    <section id="default-forms" >
+        <h1 id="buy">Compra de Produtos - Update</h1>
+        <form id="buy-content">
+            <label for="buy_name">Nome:</label>
+            <input type="text" id="buy_name" placeholder="Digite o nome do produto" required><br>
+
+            <label for="buy_cost">Custo (R$):</label>
+            <input type="number" id="buy_cost" step="0.01" placeholder="Digite o custo do produto" required><br>
+
+            <label for="buy_amount">Quantidade:</label>
+            <input type="number"  id="buy_amount" placeholder="Digite a quantidade do produto"><br>
+
+            <label for="buy_date">Data:</label>
+            <input type="date" id="buy_date" placeholder="Digite data de compra"><br><br>
+
+            <button type="submit">Enviar</button>
+            <br>
+        </form>
+    </section>
+
+    <br><br><br><br>
+
+    <section id="default-forms" >
+        <h1 id="sell">Venda de Produtos - Update</h1>
+        <form id="sell-content">
+            <label for="sell_name">Nome:</label>
+            <input type="text" id="sell_name" placeholder="Digite o nome do produto" required><br>
+
+            <label for="sell_value">Venda (R$):</label>
+            <input type="number" id="sell_value" step="0.01" placeholder="Digite o valor de venda" required><br>
+
+            <label for="sell_amount">Quantidade:</label>
+            <input type="number"  id="sell_amount" placeholder="Digite a quantidade do produto"><br>
+
+            <label for="sell_date">Data:</label>
+            <input type="date" id="sell_date" placeholder="Digite data de venda"><br><br>
+
+            <button type="submit">Enviar</button>
+            <br>
+        </form>
+    </section>
+
 </body>
 <script src="/static/javascript/scripts.js"></script>
 </html>

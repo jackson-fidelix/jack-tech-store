@@ -318,19 +318,19 @@ button {
 }
 
 
-#title, #register {
+#title, #register, #buy, #sell {
     font-weight: bold;
     align-items: center;
     justify-content: center;
     text-shadow: .5rem .5rem 1rem rgb(0, 0, 0);
-    font-size: clamp(.8vw, 1.3vw, 1.8vw);
+    font-size: clamp(1.2rem, 1.3vw, 1.8vw);
 }
 
 p, label {
     font-size: clamp(1.3rem, 1.2vw, 2rem);  
 }
 
-#register-content {
+#register-content, #buy-content, #sell-content {
     display: flex;
     flex-direction: column;
     margin: auto;
