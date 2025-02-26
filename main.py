@@ -1,7 +1,6 @@
 from flask import Flask
 from database.models import db, register, buy, sale
 
-
 app = Flask(__name__)
 
 # Configuraçao do banco
