@@ -1,5 +1,6 @@
 from flask import Flask
-#estudar sobre sqlalchemy para importar e criar um banco 
+from models import db,Register
+
 
 app = Flask(__name__)
 
