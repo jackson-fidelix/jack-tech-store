@@ -8,6 +8,6 @@ def homepage():
     return render_template("index.html")
 
 
-# @app.route("/reports")
-# def sale():
-#     return "Aba de Relatórios"
+@app.route("/reports")
+def reportspage():
+    return render_template("reports.html")
