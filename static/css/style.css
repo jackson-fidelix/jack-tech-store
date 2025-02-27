@@ -23,7 +23,8 @@ section {
 
 #nav-bar {
     position: fixed;
-    width: 99%;
+    right: 0;
+    left: 0;
     align-items: center;
     justify-content: center;
     background-color: rgb(219, 58, 2);
@@ -68,8 +69,8 @@ section {
 }
 
 .menu-icon .bar {
-    width: 30px;
-    height: 4px;
+    width: 25px;
+    height: 5px;
     margin: 5px 0;
     background-color: rgb(255, 255, 255);
     color: rgb(0, 0, 0);
@@ -97,9 +98,14 @@ section {
         width: 100%;
         margin: 10px 0;
     }
-
+a
     #nav-bar li a {
         font-size: 1rem;
+    }
+
+    #nav-bar {
+        width: 95%;
+        margin-left: 1.8%;
     }
 }
 
