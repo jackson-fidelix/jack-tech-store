@@ -22,3 +22,20 @@ var span = document.getElementsByClassName("close")[0];
 span.onclick = function() {
     modal.style.display = "none";
 }
+
+// apresentando mensagem de cadastro de produto realizado
+function showMessage(event){
+    event.preventDefault(); // evita que o formulário seja enviado imediatamente
+
+    let messageDiv = document.getElementById("flash-message");
+    messageDiv.textContent = "Cadastro realizado com sucesso!";
+    messageDiv.style.display = "block";
+
+    setTimeout(() => {
+        messageDiv.style.display = "none";
+    }, 3000); // esconde a mensagem após 3 minutos
+
+    setTimeout(() => {
+        event.target.form.submit() // envia o form após a mensagem desaparecer, depos de 1.5 segundos
+    }, 1500);
+}
