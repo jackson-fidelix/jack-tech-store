@@ -78,20 +78,23 @@
     <br>
     <section id="register-form" >
         <h1 id="register">Cadastro de Produtos - Create</h1>
-        <form id="register-content">
+        <form id="register-content" action="{{ url_for('register_product')}}" method="post">
             <label for="register_name">Nome:</label>
-            <input type="text" id="register_name" placeholder="Digite o nome do produto" required><br>
+            <input type="text" id="register_name" name="register_name" placeholder="Digite o nome do produto" required><br>
 
             <label for="register_cost">Custo (R$):</label>
-            <input type="number" id="register_cost" step="0.01" placeholder="Digite o custo do produto" required><br>
+            <input type="number" id="register_cost" name="register_cost" step="0.01" placeholder="Digite o custo do produto" required><br>
 
             <label for="register_amount">Quantidade:</label>
-            <input type="number"  id="register_amount" placeholder="Digite a quantidade do produto"><br>
+            <input type="number"  id="register_amount" name="register_amount" placeholder="Digite a quantidade do produto"><br>
 
             <label for="register_date">Data:</label>
-            <input type="date" id="register_date" placeholder="Digite data de cadastro"><br><br>
+            <input type="date" id="register_date" name="register_date" placeholder="Digite data de cadastro"><br><br>
 
-            <button type="submit">Cadastrar</button>
+            <button type="submit" onclick="showMessage(event)">Cadastrar</button>
+            <br><br>
+            
+            <div id="flash-message" class="success" style="display: none;"> </div>
             <br>
         </form>
     </section>
