@@ -53,7 +53,7 @@ section {
     padding: 10px 20px;
     color: rgb(255, 255, 255);
     text-decoration: none;
-    font-size: clamp(1vw, 1.5vw, 2vw);
+    font-size: clamp(1.3rem, 1.5vw, 2vw);
     font-weight: bold;
 }
 
@@ -301,8 +301,8 @@ to {transform: scale(1)}
     }
 }
 
-p, label, button {
-    font-size: clamp(1rem, 1vw, 1.2vw);
+p, label, button, table {
+    font-size: clamp(1.3rem, 1.2vw, 2rem);
 }
 
 button {
@@ -331,10 +331,6 @@ button {
     justify-content: center;
     text-shadow: .5rem .5rem 1rem rgb(0, 0, 0);
     font-size: clamp(1.2rem, 1.3vw, 1.8vw);
-}
-
-p, label {
-    font-size: clamp(1.3rem, 1.2vw, 2rem);  
 }
 
 #register-content, #buy-content, #sell-content {
@@ -398,4 +394,26 @@ input {
     margin-right: 2rem;
     box-shadow: 1rem .7rem 2rem rgb(250, 191, 117);
     scroll-margin-top: 60px;
+}
+
+#title-reports{
+    display: flex;
+    font-weight: bold;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    color: rgb(12, 31, 74);
+    text-shadow: .5rem .5rem 1rem rgb(57, 57, 245);
+    font-size: clamp(3.5rem, 1.5vw, 2vw);
+}
+
+#reports-table {
+    width: clamp(400px, 60vw, 800px);
+    max-width: 80vw;
+    background-color: rgb(57, 57, 245, .7);
+    color: white;
+    border-radius: .5rem;
+    box-shadow: 1rem .7rem 2rem rgb(0, 0, 0);
+    padding: 1rem;
+    margin: auto;
 }
