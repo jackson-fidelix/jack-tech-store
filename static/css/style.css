@@ -397,25 +397,42 @@ input {
 }
 
 #title-reports{
+    background-color: rgb(57, 57, 245);
+    width: 40%;
+    border-radius: 1rem;
+    padding: 1rem;
     display: flex;
     font-weight: bold;
     align-items: center;
     justify-content: center;
     margin: auto;
-    color: rgb(12, 31, 74);
-    text-shadow: .5rem .5rem 1rem rgb(57, 57, 245);
+    color: rgb(250, 191, 117);
+    box-shadow: 1rem 1rem 2rem rgb(0, 0, 0);
     font-size: clamp(3.5rem, 1.5vw, 2vw);
 }
 
 #reports-table {
-    width: clamp(400px, 60vw, 800px);
+    width: clamp(350px, 50vw, 700px);
     max-width: 80vw;
-    background-color: rgb(57, 57, 245, .7);
+    background-color: rgb(12, 31, 74);
     color: white;
     border-radius: .5rem;
+    border-spacing: clamp(.5rem, 1vw, 1rem);
     box-shadow: 1rem .7rem 2rem rgb(0, 0, 0);
+    font-size: clamp(1.2rem, 1.3vw, 1.8vw);
     padding: 1rem;
     margin: auto;
+}
+
+thead {
+    color: rgb(219, 58, 2);
+}
+
+th,td {
+    border: .3rem solid rgba(255, 255, 255, 0.9);
+    text-align: center;
+    padding: .5em;
+    border-radius: 1rem;
 }
 
 #flash-message{

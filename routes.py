@@ -46,13 +46,16 @@ def register_product():
 def get_stock_report():
     products = register.query.all() #consulta a table register e retorna all items
 
-    stock_report = [{
-        'id': products.id,
-        'product_name': products.product_name.capitalize(),
-        'amount': products.amount,
-        'average_cost': products.average_cost_value,
-        'average_sale': products.average_sale_value,
-        'date': products.date.strftime("%Y-%m-%d ") # para data e hora ("%Y-%m-%d %H:%M:%S")  # Formatar a data
-    }for product in products]
+    stock_report = [] # lista vazia que irá receber os dados da tabela estoque
+
+    for product in products: # iterando sobre cada elemento da lista
+        stock_report.append({
+            'id': product.id,
+            'product_name': product.product_name.capitalize(),
+            'amount': product.amount,
+            'average_cost': product.average_cost_value,
+            'average_sale': product.average_sale_value,
+            'date': product.date.strftime("%Y-%m-%d ") # para data e hora ("%Y-%m-%d %H:%M:%S")  # Formatar a data
+        })
 
     return jsonify(stock_report)

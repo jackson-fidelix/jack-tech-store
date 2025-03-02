@@ -5,25 +5,37 @@ function toggleMenu() {
     const navLinks = document.querySelector('#nav-links');
     navLinks.classList.toggle('active'); /* Adiciona ou remove a classe active*/
 }
-/* o modal */
-var modal = document.getElementById('myModal');
 
-//obter a imagem e inserir dentro do modal - usar texto do "alt" como legenda
-var img = document.getElementById('company-img');
-var modalImg = document.getElementById('img01');
-var captionText = document.getElementById('caption');
-img.onclick = function() {
-    modal.style.display = "block";
-    modalImg.src = this.src;
-    captionText.innerHTML = this.alt;
-}
-//obtenha o <span> que vai fechar o modal
-var span = document.getElementsByClassName("close")[0];
+/* essa funçao chama a funçao modal quando estiver na página index
+vale ressaltar que o uso do "DOMContentLoaded" é importante para que
+esse conteúdo rode depois de todo o HTML ter sido carregado */
 
-//quando o usuário clicar no <span> (x), feche o modal
-span.onclick = function() {
-    modal.style.display = "none";
-}
+document.addEventListener("DOMContentLoaded", function(){
+    if (window.location.pathname == "/") {
+        var modal = document.getElementById('myModal');
+        var img = document.getElementById('company-img');
+        var modalImg = document.getElementById('img01');
+        var captionText = document.getElementById('caption');
+        // obtenha o <span> que vai fechar o modal
+        var span = document.getElementsByClassName("close")[0];
+
+        if (modal && img && modalImg && captionText && span) {
+            img.addEventListener("click", function() {
+                modal.style.display = "block";
+                modalImg.src = this.src;
+                captionText.innerHTML = this.alt;
+            });
+
+            // quando o usuário clicar no <span> (x), feche o modal
+            span.addEventListener("click", function(){
+                modal.style.display = "none";
+            });
+        } else {
+            console.log('Erro: Um ou mais elementos do modal nao foram encontrados. ');
+        }
+    }
+});
+
 
 // apresentando mensagem de cadastro de produto realizado
 function showMessage(event){
@@ -42,8 +54,17 @@ function showMessage(event){
     }, 1500);
 }
 
+
+// essa funçao chama a funçao loadStockreports o carregamento da página
+window.onload = function() {
+    if(window.location.pathname == "/reports") {
+        loadStockReports();
+    }
+};
+
 // function que carrega o relatório de estoque e faz consultas na api a cada 5000 milisegundos
 function loadStockReports(){
+    console.log('cheguei aqui')
     fetch('/api/stock_report') //aqui é feito a requisiçao para API que criamos no flask
     .then(response => response.json())
     .then(data => {
@@ -89,11 +110,4 @@ function loadStockReports(){
         });
     })
     .catch(error => console.error('Erro ao carregar o relatório: ',error));
-}
-
-// essa funçao chama a funçao acima após o carregamento da página
-window.onload = function() {
-    if(window.location.pathname == "/reports") {
-        loadStockReports();
-    }
 };
