@@ -1,6 +1,5 @@
 from flask import Flask
 from database.models import db, register, buy, sale
-from routes import *
 
 app = Flask(__name__)
 
@@ -11,6 +10,8 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Inicializa o SQLAlchemy com este app
 db.init_app(app)
+from routes import *
+
 
 if __name__ == "__main__":
     # Cria as tabelas dentro do contexto do app

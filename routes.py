@@ -1,6 +1,6 @@
 from main import app
 from database.models import db, register
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, jsonify
 from datetime import datetime
 
 
@@ -40,7 +40,19 @@ def register_product():
     db.session.add(novo)
     db.session.commit()
 
-    # primeira opção, faz reoload
     return redirect(url_for("homepage", _anchor="register-form"))
-    # segunda opção, faz reoload e apresenta uma mensagem >> register
-    # return render_template("index.html", mensagem="Cadastro realizado com Sucesso!")
+
+@app.route('/api/stock_report', methods=['GET'])
+def get_stock_report():
+    products = register.query.all() #consulta a table register e retorna all items
+
+    stock_report = [{
+        'id': products.id,
+        'product_name': products.product_name.captilize(),
+        'amount': products.amount,
+        'average_cost': products.average_cost_value,
+        'average_sale': products.average_sale_value,
+        'date': products.date.strftime("%Y-%m-%d ") # para data e hora ("%Y-%m-%d %H:%M:%S")  # Formatar a data
+    }for product in products]
+
+    return jsonify(stock_report)

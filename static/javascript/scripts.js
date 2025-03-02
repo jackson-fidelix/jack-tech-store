@@ -39,3 +39,5 @@ function showMessage(event){
         event.target.form.submit() // envia o form após a mensagem desaparecer, depos de 1.5 segundos
     }, 1500);
 }
+
+// function que carrega o relatório de estoque e faz consultas na api a cada 5000 milisegundos
