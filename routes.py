@@ -48,7 +48,7 @@ def get_stock_report():
 
     stock_report = [{
         'id': products.id,
-        'product_name': products.product_name.captilize(),
+        'product_name': products.product_name.capitalize(),
         'amount': products.amount,
         'average_cost': products.average_cost_value,
         'average_sale': products.average_sale_value,

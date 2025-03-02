@@ -1,3 +1,5 @@
+console.log('Script carregado com sucesso!')
+
 function toggleMenu() {
     console.log("Chamada de Toggled funcionando!")
     const navLinks = document.querySelector('#nav-links');
@@ -41,3 +43,57 @@ function showMessage(event){
 }
 
 // function que carrega o relatório de estoque e faz consultas na api a cada 5000 milisegundos
+function loadStockReports(){
+    fetch('/api/stock_report') //aqui é feito a requisiçao para API que criamos no flask
+    .then(response => response.json())
+    .then(data => {
+        console.log('Dados recebidos da API:', data);
+        let tbody = document.getElementById('reports-tbody'); // selecionando o corpo da table
+        tbody.innerHTML = '';
+
+        // iterando sobre os dados retornados da API e criando as linhas da tabela
+        data.forEach(item => {
+            let row = document.createElement('tr');
+            console.log('Linha criada com sucesso!'); // isso será apagado
+
+            // para cada item cria uma célula que vai ficar dentro da linha criada
+            let id = document.createElement('td');
+            id.textContent = item.id;
+
+            let productName = document.createElement('td');
+            productName.textContent = item.product_name;
+
+            let amount = document.createElement('td');
+            amount.textContent = item.amount;
+
+            let cost = document.createElement('td');
+            cost.textContent = item.average_cost;
+
+            let sale = document.createElement('td');
+            sale.textContent = item.average_sale;
+
+            let date = document.createElement('td');
+            date.textContent = item.date;
+            console.log('Todas as células foram criadas com sucesso!');
+
+            row.appendChild(id);
+            row.appendChild(productName);
+            row.appendChild(amount);
+            row.appendChild(cost);
+            row.appendChild(sale);
+            row.appendChild(date);
+            console.log('Células adicionadas a linha!');
+
+            tbody.appendChild(row);
+            console.log('Linha adicionada a tabela!');
+        });
+    })
+    .catch(error => console.error('Erro ao carregar o relatório: ',error));
+}
+
+// essa funçao chama a funçao acima após o carregamento da página
+window.onload = function() {
+    if(window.location.pathname == "/reports") {
+        loadStockReports();
+    }
+};
