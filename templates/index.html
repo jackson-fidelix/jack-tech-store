@@ -99,9 +99,9 @@
         </form>
     </section>
 
-    <section id="buy-form" >
+    <section id="buy-form">
         <h1 id="buy">Compra de Produtos</h1>
-        <form id="buy-content">
+        <form id="buy-content"  method="POST">
             <label for="buy_name">Nome:</label>
             <input type="text" id="buy_name" name="buy_name" placeholder="Digite o nome do produto" required><br>
 
@@ -114,7 +114,7 @@
             <label for="buy_date">Data:</label>
             <input type="date" id="buy_date" name="buy_date" placeholder="Digite data de compra" required><br><br>
 
-            <button type="submit" onclick="showBuyMsg(event)">Enviar</button>
+            <button type="submit">Comprar</button>
             <br>
         </form>
     </section>
@@ -129,7 +129,7 @@
             <input type="number" id="sell_value" step="0.01" placeholder="Digite o valor de venda" required><br>
 
             <label for="sell_amount">Quantidade:</label>
-            <input type="number"  id="sell_amount" placeholder="Digite a quantidade do produto"><br>
+            <input type="number"  id="sell_amount" placeholder="Digite a quantidade do produto" required><br>
 
             <label for="sell_date">Data:</label>
             <input type="date" id="sell_date" placeholder="Digite data de venda" required ><br><br>

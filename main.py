@@ -1,5 +1,6 @@
 from flask import Flask
 from database.models import db, register, buy, sale
+import sys
 
 app = Flask(__name__)
 

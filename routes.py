@@ -72,7 +72,7 @@ def register_product():
 
 @app.route("/buy", methods=['POST'])
 def buy_products():
-    buy_product_name = request.form.get('buy_name')
+    buy_product_name = request.form.get("buy_name")
     cost = request.form.get("buy_cost")
     amount = request.form.get("buy_amount")
     date = request.form.get("buy_date")
@@ -81,11 +81,18 @@ def buy_products():
     cost = float(cost) if cost else 0.00
     amount = int(amount) if amount else 0
     date = datetime.strptime(date, "%Y-%m-%d") if date else datetime.now()
+    
+    print(f"Nome do produto: {buy_product_name}")
+    print(f"Custo: {cost}")
+    print(f"Quantidade: {amount}")
+    print(f"Data: {date}")
+
 
     # verificando se o produto existe
-    product = register.query.filter_by(product_name = buy_product_name).first()
+    product = register.query.filter_by(product_name=buy_product_name).first()
     if not product:
-        return jsonify({"error": "Produto não encontrado"}),404
+        return jsonify({"error": "Produto não encontrado"}), 404
+    
 
     new_buy = buy(
         id_register = product.id, # chave estrangeira do produto 
@@ -96,6 +103,9 @@ def buy_products():
     )
     db.session.add(new_buy)
     db.session.commit()
+
+    return jsonify({"message": "Compra registrada com sucesso!"}),200
+    #return redirect(url_for("homepage", _anchor="buy-form"))
 
 
 @app.route('/api/stock_report', methods=['GET'])

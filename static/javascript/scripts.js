@@ -64,7 +64,7 @@ window.onload = function() {
 
 // function que carrega o relatório de estoque e faz consultas na api a cada 5000 milisegundos
 function loadStockReports(){
-    console.log('cheguei aqui')
+    console.log('Estamos dentro da API!')
     fetch('/api/stock_report') //aqui é feito a requisiçao para API que criamos no flask
     .then(response => response.json())
     .then(data => {
@@ -136,7 +136,23 @@ document.getElementById("buy-content").addEventListener("submit", function(event
 
     console.log('Enviamos a compra desse produto ao BD!')
 
-    setTimeout(() => {
-        location.reload(); // recarregue a página depois de 3 segundos
-    }, 3000);
+    fetch('/buy', {
+        method: 'POST',
+        body: new FormData(event.target),
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.message) {
+            console.log(data.message);
+            alert(data.message);
+            window.location.href = "/";
+        } else {
+            console.error('Erro ao compra:', data.error);
+            alert('Erro ao registra compra:' + data.error);
+        }  
+    })
+    .catch(error => {
+        console.log('Erro no envio:', error);
+        alert('Ocorreu um erro ao registrar a compra.');
+    });
 });
