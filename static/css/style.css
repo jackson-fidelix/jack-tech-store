@@ -408,19 +408,19 @@ input {
     margin: auto;
     color: rgb(250, 191, 117);
     box-shadow: 1rem 1rem 2rem rgb(0, 0, 0);
-    font-size: clamp(3.5rem, 1.5vw, 2vw);
+    font-size: clamp(2rem, 1.5vw, 2vw);
 }
 
 #reports-table {
-    width: clamp(350px, 50vw, 700px);
-    max-width: 80vw;
+    width: clamp(200px, 50vw, 900px);
+    max-width: 90vw;
     background-color: rgb(12, 31, 74);
     color: white;
     border-radius: .5rem;
-    border-spacing: clamp(.5rem, 1vw, 1rem);
+    border-spacing: 1.2vw;
     box-shadow: 1rem .7rem 2rem rgb(0, 0, 0);
-    font-size: clamp(1.2rem, 1.3vw, 1.8vw);
-    padding: 1rem;
+    font-size: clamp(.8rem, 1vw, 1.8rem);
+    padding: clamp(0, 1vw, 1.2vw);
     margin: auto;
 }
 
@@ -428,10 +428,20 @@ thead {
     color: rgb(219, 58, 2);
 }
 
-th,td {
+th {
+    border: .4rem solid rgba(255, 255, 255, 0.9);
+    width: auto;
+    text-align: center;
+    padding: clamp(0, 1vw, 1.2vw);
+    border-radius: 1rem;
+}
+
+.tdBorder {
     border: .3rem solid rgba(255, 255, 255, 0.9);
     text-align: center;
-    padding: .5em;
+    width: clamp(100px, 30vw, 150px); 
+    max-width: 150px;
+    padding: clamp(0, 1vw, 1rem);
     border-radius: 1rem;
 }
 
@@ -443,4 +453,23 @@ th,td {
     font-size: clamp(1rem, 1.5vw, 2vw);
     border-radius: .5rem;
     font-style: bold;
+}
+
+.delete-button {
+    background-color: rgb(255, 0, 0);
+    color: rgb(255, 255, 255);
+    border: none;
+    padding: 1rem;
+    cursor: pointer;
+    font-size: clamp(1rem, 1.5vw, 2vw);
+    border-radius: 1rem;
+}
+
+.delete-button:hover {
+    background-color: rgb(139, 0, 0);
+    color: rgb(169, 169, 169);
+}
+
+.delete-button i {
+    margin: 0;
 }
