@@ -79,22 +79,39 @@ function loadStockReports(){
 
             // para cada item cria uma célula que vai ficar dentro da linha criada
             let id = document.createElement('td');
+            id.classList.add('tdBorder');
             id.textContent = item.id;
 
             let productName = document.createElement('td');
+            productName.classList.add('tdBorder');
             productName.textContent = item.product_name;
 
             let amount = document.createElement('td');
+            amount.classList.add('tdBorder');
             amount.textContent = item.amount;
 
             let cost = document.createElement('td');
+            cost.classList.add('tdBorder');
             cost.textContent = item.average_cost;
 
             let sale = document.createElement('td');
+            sale.classList.add('tdBorder');
             sale.textContent = item.average_sale;
 
             let date = document.createElement('td');
+            date.classList.add('tdBorder');
             date.textContent = item.date;
+
+            let deleteButtonCell = document.createElement('td');
+            let deleteButton = document.createElement('button');
+            deleteButton.innerHTML = '<i class="fa-solid fa-trash"></i>';
+            deleteButton.classList.add('delete-button');
+            deleteButton.onclick = function() {
+                console.log(`Produto ${item.id} marcado para deletar`)
+            };
+
+            deleteButtonCell.appendChild(deleteButton);
+
             console.log('Todas as células foram criadas com sucesso!');
 
             row.appendChild(id);
@@ -103,6 +120,7 @@ function loadStockReports(){
             row.appendChild(cost);
             row.appendChild(sale);
             row.appendChild(date);
+            row.appendChild(deleteButtonCell);
             console.log('Células adicionadas a linha!');
 
             tbody.appendChild(row);
@@ -111,3 +129,14 @@ function loadStockReports(){
     })
     .catch(error => console.error('Erro ao carregar o relatório: ',error));
 };
+
+
+document.getElementById("buy-content").addEventListener("submit", function(event){
+    event.preventDefault(); // evita o recarregamento da página
+
+    console.log('Enviamos a compra desse produto ao BD!')
+
+    setTimeout(() => {
+        location.reload(); // recarregue a página depois de 3 segundos
+    }, 3000);
+});
