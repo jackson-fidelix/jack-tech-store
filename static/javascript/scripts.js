@@ -131,28 +131,18 @@ function loadStockReports(){
 };
 
 
-document.getElementById("buy-content").addEventListener("submit", function(event){
-    event.preventDefault(); // evita o recarregamento da página
+function showBuy(event) {
+    event.preventDefault(); // evita que o formulário seja enviado imediatamente
 
-    console.log('Enviamos a compra desse produto ao BD!')
+    let message = document.getElementById("flash-buymsg");
+    message.textContent = "Compra realizada com sucesso!";
+    message.style.display = "block";
 
-    fetch('/buy', {
-        method: 'POST',
-        body: new FormData(event.target),
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.message) {
-            console.log(data.message);
-            alert(data.message);
-            window.location.href = "/";
-        } else {
-            console.error('Erro ao compra:', data.error);
-            alert('Erro ao registra compra:' + data.error);
-        }  
-    })
-    .catch(error => {
-        console.log('Erro no envio:', error);
-        alert('Ocorreu um erro ao registrar a compra.');
-    });
-});
+    setTimeout(() => {
+        message.style.display = "none";
+    }, 3000); // esconde a mensagem após 3 minutos
+
+    setTimeout(() => {
+        event.target.form.submit() // envia o form após a mensagem desaparecer, depos de 1.5 segundos
+    }, 1500);
+}
