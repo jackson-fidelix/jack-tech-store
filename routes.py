@@ -44,7 +44,7 @@ def register_product():
     - Redirecionamento para a página inicial (com ancoragem no formulário).
     """
     # Recebendo os valores do formulário de cadastro
-    product_name = request.form.get("register_name")
+    product_name = request.form.get("register_name").strip().lower()
     cost = request.form.get("register_cost")
     amount = request.form.get("register_amount")
     date = request.form.get("register_date")
@@ -70,9 +70,9 @@ def register_product():
     return redirect(url_for("homepage", _anchor="register-form"))
 
 
-@app.route("/buy", methods=['POST'])
-def buy_products():
-    buy_product_name = request.form.get("buy_name")
+@app.route("/buy", methods=["POST"])
+def buy_product():
+    buy_product_name = request.form.get("buy_name").strip().lower()
     cost = request.form.get("buy_cost")
     amount = request.form.get("buy_amount")
     date = request.form.get("buy_date")
@@ -88,8 +88,10 @@ def buy_products():
     print(f"Data: {date}")
 
 
-    # verificando se o produto existe
-    product = register.query.filter_by(product_name=buy_product_name).first()
+    # verificando se o produto existe | first serve para retornar o primeiro registo encontrado
+    product = register.query.filter(db.func.lower(register.product_name) == buy_product_name.lower()).first()
+
+    print(product)
     if not product:
         return jsonify({"error": "Produto não encontrado"}), 404
     
@@ -104,8 +106,7 @@ def buy_products():
     db.session.add(new_buy)
     db.session.commit()
 
-    return jsonify({"message": "Compra registrada com sucesso!"}),200
-    #return redirect(url_for("homepage", _anchor="buy-form"))
+    return redirect(url_for("homepage", _anchor="buy-form"))
 
 
 @app.route('/api/stock_report', methods=['GET'])
