@@ -91,8 +91,7 @@
             <label for="register_date">Data:</label>
             <input type="date" id="register_date" name="register_date" placeholder="Digite data de cadastro" required><br><br>
 
-            <button type="submit" onclick="showMessage(event)">Cadastrar</button>
-            <br><br>
+            <button type="submit" onclick="showMessage(event)">Cadastrar</button><br><br>
             
             <div id="flash-message" class="success" style="display: none;"> </div>
             <br>
@@ -101,7 +100,7 @@
 
     <section id="buy-form">
         <h1 id="buy">Compra de Produtos</h1>
-        <form id="buy-content"  method="POST">
+        <form id="buy-content" action="{{ url_for('buy_product') }}" method="post">
             <label for="buy_name">Nome:</label>
             <input type="text" id="buy_name" name="buy_name" placeholder="Digite o nome do produto" required><br>
 
@@ -114,7 +113,9 @@
             <label for="buy_date">Data:</label>
             <input type="date" id="buy_date" name="buy_date" placeholder="Digite data de compra" required><br><br>
 
-            <button type="submit">Comprar</button>
+            <button type="submit" onclick="showBuy(event)">Comprar</button><br><br>
+
+            <div id="flash-buymsg" class="success" style="display: none;"> </div>
             <br>
         </form>
     </section>
