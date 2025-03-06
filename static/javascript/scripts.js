@@ -37,21 +37,34 @@ document.addEventListener("DOMContentLoaded", function(){
 });
 
 
-// apresentando mensagem de cadastro de produto realizado
-function showMessage(event){
-    event.preventDefault(); // evita que o formulário seja enviado imediatamente
-
+document.addEventListener("DOMContentLoaded", function() {
     let messageDiv = document.getElementById("flash-message");
-    messageDiv.textContent = "Cadastro realizado com sucesso!";
+    let params = new URLSearchParams(window.location.search);
+
+
+    if (params.has("error")) {
+        showMessage("Produto já tem cadastro!", "red");
+    } else if (params.has("success")) {
+        showMessage("Cadastro realizado com sucesso!", "green");
+    }
+});
+
+// apresentando mensagem de cadastro de produto realizado
+function showMessage(message, color) {
+    let messageDiv = document.getElementById("flash-message");
+    
+    if (!messageDiv) return; 
+    messageDiv.textContent = message;
+    messageDiv.style.backgroundColor =  color;
     messageDiv.style.display = "block";
+    
+    setTimeout(() => {
+        document.getElementById("register-content").submit() // envia o form após a mensagem desaparecer, depos de 1.5 segundos
+        }, 1500);
 
     setTimeout(() => {
         messageDiv.style.display = "none";
     }, 3000); // esconde a mensagem após 3 minutos
-
-    setTimeout(() => {
-        event.target.form.submit() // envia o form após a mensagem desaparecer, depos de 1.5 segundos
-    }, 1500);
 }
 
 

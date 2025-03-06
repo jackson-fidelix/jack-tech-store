@@ -1,6 +1,6 @@
 from main import app
 from database.models import db, register, buy
-from flask import Flask, render_template, request, redirect, url_for, jsonify
+from flask import Flask, render_template, request, redirect, url_for, jsonify, flash
 from datetime import datetime
 
 # Rotas
@@ -45,6 +45,10 @@ def register_product():
     """
     # Recebendo os valores do formulário de cadastro
     product_name = request.form.get("register_name").strip().lower()
+    existing_product = register.query.filter_by(product_name=product_name).first()
+    if existing_product:
+        print("Produto já cadastrado. Ele nao será adicionado de novo!!")
+        return redirect(url_for("homepage", _anchor="register-form", error=1))
     cost = request.form.get("register_cost")
     amount = request.form.get("register_amount")
     date = request.form.get("register_date")
@@ -67,7 +71,7 @@ def register_product():
     db.session.commit()
 
     # Redirecionando para a página inicial, com ancoragem no formulário
-    return redirect(url_for("homepage", _anchor="register-form"))
+    return redirect(url_for("homepage", _anchor="register-form", success=1))
 
 
 @app.route("/buy", methods=["POST"])
