@@ -47,7 +47,6 @@ def register_product():
     product_name = request.form.get("register_name").strip().lower()
     existing_product = register.query.filter_by(product_name=product_name).first()
     if existing_product:
-        print("Produto já cadastrado. Ele nao será adicionado de novo!!")
         return redirect(url_for("homepage", _anchor="register-form", error=1))
     cost = request.form.get("register_cost")
     amount = request.form.get("register_amount")

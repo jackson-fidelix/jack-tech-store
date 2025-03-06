@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-// apresentando mensagem de cadastro de produto realizado
+// apresentando mensagem de cadastro de produto realizado, similar a funçoes no python
 function showMessage(message, color) {
     let messageDiv = document.getElementById("flash-message");
     
@@ -59,7 +59,7 @@ function showMessage(message, color) {
     messageDiv.style.display = "block";
     
     setTimeout(() => {
-        document.getElementById("register-content").submit() // envia o form após a mensagem desaparecer, depos de 1.5 segundos
+        document.getElementById("register-content").submit() // envia o form após a mensagem desaparecer, depois de 1.5 segundos
         }, 1500);
 
     setTimeout(() => {
