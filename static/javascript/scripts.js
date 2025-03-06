@@ -38,9 +38,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
 
 document.addEventListener("DOMContentLoaded", function() {
-    let messageDiv = document.getElementById("flash-message");
     let params = new URLSearchParams(window.location.search);
-
 
     if (params.has("error")) {
         showMessage("Produto já tem cadastro!", "red");
@@ -57,10 +55,6 @@ function showMessage(message, color) {
     messageDiv.textContent = message;
     messageDiv.style.backgroundColor =  color;
     messageDiv.style.display = "block";
-    
-    setTimeout(() => {
-        document.getElementById("register-content").submit() // envia o form após a mensagem desaparecer, depois de 1.5 segundos
-        }, 1500);
 
     setTimeout(() => {
         messageDiv.style.display = "none";
