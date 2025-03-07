@@ -150,3 +150,21 @@ def get_stock_report():
         })
 
     return jsonify(stock_report)
+
+
+@app.route('/deleteTr', methods=["POST"])
+def delete_product():
+    product_id = request.form.get('id') # pegou o ID do Produto do form recebido na chamada da function JS
+
+    product = register.query.filter_by(id=product_id).first()
+
+    if product:
+        db.session.delete(product) # se o produto existe, delete ele
+        db.session.commit()
+        print(f'Produto {product_id} excluido com sucesso.')
+    else:
+        print(f'Prduto {product_id} nao encontrado!')
+    
+    return redirect(url_for("reportspage"))
+
+        
