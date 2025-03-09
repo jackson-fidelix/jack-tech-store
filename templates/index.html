@@ -122,18 +122,18 @@
 
     <section id="sell-form" >
         <h1 id="sell">Venda de Produtos - Update</h1>
-        <form id="sell-content">
+        <form id="sell-content" action="{{ url_for('sale_product') }}">
             <label for="sell_name">Nome:</label>
-            <input type="text" id="sell_name" placeholder="Digite o nome do produto" required><br>
+            <input type="text" id="sell_name" name="sale_name" placeholder="Digite o nome do produto" required><br>
 
             <label for="sell_value">Venda (R$):</label>
-            <input type="number" id="sell_value" step="0.01" placeholder="Digite o valor de venda" required><br>
+            <input type="number" id="sell_value" name="sale_value" step="0.01" placeholder="Digite o valor de venda" required><br>
 
             <label for="sell_amount">Quantidade:</label>
-            <input type="number"  id="sell_amount" placeholder="Digite a quantidade do produto" required><br>
+            <input type="number"  id="sell_amount" name="sale_amount" placeholder="Digite a quantidade do produto" required><br>
 
             <label for="sell_date">Data:</label>
-            <input type="date" id="sell_date" placeholder="Digite data de venda" required ><br><br>
+            <input type="date" id="sell_date" name="sale_date" placeholder="Digite data de venda" required ><br><br>
 
             <button type="submit">Enviar</button>
             <br>

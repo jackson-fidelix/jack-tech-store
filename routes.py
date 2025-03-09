@@ -167,4 +167,7 @@ def delete_product():
     
     return redirect(url_for("reportspage"))
 
-        
+
+app.route('/sale', methods=["POST"])
+def sale_product():
+    
