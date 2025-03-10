@@ -1,5 +1,5 @@
 from main import app
-from database.models import db, register, buy
+from database.models import db, register, buy, sale
 from flask import Flask, render_template, request, redirect, url_for, jsonify, flash
 from datetime import datetime
 
@@ -168,6 +168,41 @@ def delete_product():
     return redirect(url_for("reportspage"))
 
 
-app.route('/sale', methods=["POST"])
+@app.route('/sale', methods=["POST"])
 def sale_product():
+    sale_name = request.form.get("sale_name").strip().lower()
+    sale_value = request.form.get("sale_value")
+    sale_amount = request.form.get("sale_amount")
+    sale_date = request.form.get("sale_date")
+
+    # convertendo os valores
+    sale_value = float(sale_value) if sale_value else 0.00
+    sale_amount = int(sale_amount) if sale_amount else 0
+    sale_date = datetime.strptime(sale_date, "%Y-%m-%d") if sale_date else datetime.now()
+
+    print(f"Nome do produto: {sale_name}")
+    print(f"Valor: {sale_value}")
+    print(f"Quantidade: {sale_amount}")
+    print(f"Data: {sale_date}")
+
+    product = register.query.filter(db.func.lower(register.product_name) == sale_name.lower()).first()
+
+    if product:
+        print('Produto encontrado!')
+
+        new_sale = sale(
+            id_register = product.id,
+            product_name = sale_name,
+            sale_value = sale_value,
+            amount = sale_amount,
+            sale_date = sale_date
+        )
+        db.session.add(new_sale)
+        db.session.commit()
+
+        return redirect(url_for('homepage', _anchor='sell-form'))
+    else:
+        print(f'O produto {sale_name} nao existe na table register.')
+        return redirect(url_for("reportspage"))
     
+        

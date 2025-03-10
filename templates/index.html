@@ -122,7 +122,7 @@
 
     <section id="sell-form" >
         <h1 id="sell">Venda de Produtos - Update</h1>
-        <form id="sell-content" action="{{ url_for('sale_product') }}">
+        <form id="sell-content" action="{{ url_for('sale_product') }}" method="post">
             <label for="sell_name">Nome:</label>
             <input type="text" id="sell_name" name="sale_name" placeholder="Digite o nome do produto" required><br>
 
