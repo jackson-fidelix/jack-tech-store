@@ -1,7 +1,7 @@
 from main import app
 from database.models import db, register, buy, sale
 from flask import Flask, render_template, request, redirect, url_for, jsonify, flash
-from datetime import datetime
+from datetime import datetime, timedelta
 
 # Rotas
 
@@ -63,7 +63,7 @@ def register_product():
         product_name=product_name,
         amount=amount,
         average_cost_value=cost,
-        average_sale_value=0.0,
+        average_sale_amount=0,
         date=date_obj
     )
     db.session.add(novo)
@@ -145,7 +145,7 @@ def get_stock_report():
             'product_name': product.product_name.capitalize(),
             'amount': product.amount,
             'average_cost': product.average_cost_value,
-            'average_sale': product.average_sale_value,
+            'average_sale': product.average_sale_amount,
             'date': product.date.strftime("%Y-%m-%d ")  # Formatação da data
         })
 
@@ -199,6 +199,11 @@ def sale_product():
         )
         db.session.add(new_sale)
         db.session.commit()
+    
+        venda_mensal = venda_mes(sale_name)
+        product.average_sale_amount = venda_mensal
+        product.amount -= sale_amount
+        db.session.commit()
 
         return redirect(url_for('homepage', _anchor='sell-form'))
     else:
@@ -214,6 +219,10 @@ def venda_mes(sale_name):
     vendas = sale.query.filter(
         db.func.lower(sale.product_name) == sale_name.lower(),
         sale.sale_date >= periodo).all()
+    
+    quantidade_mes = 0
+
     for venda in vendas:
-        quantidade_mes += sale.amount
+        quantidade_mes += int(venda.amount)
+    print(f'Foi vendido {quantidade_mes} itens.')
     return quantidade_mes        

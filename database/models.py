@@ -7,7 +7,7 @@ class register(db.Model):
     product_name = db.Column(db.String(100), index=True, nullable=False, unique=True)
     amount = db.Column(db.Integer,  nullable=False)
     average_cost_value = db.Column(db.Float, nullable=False)
-    average_sale_value = db.Column(db.Float, nullable=False)
+    average_sale_amount = db.Column(db.Integer, nullable=False)
     date = db.Column(db.DateTime, nullable=False)
 
 class buy(db.Model):
