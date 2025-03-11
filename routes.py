@@ -204,5 +204,16 @@ def sale_product():
     else:
         print(f'O produto {sale_name} nao existe na table register.')
         return redirect(url_for("reportspage"))
-    
-        
+
+
+def venda_mes(sale_name):
+    date_atual = datetime.now()
+    data_maxima = timedelta(days=30)
+    periodo = date_atual - data_maxima
+
+    vendas = sale.query.filter(
+        db.func.lower(sale.product_name) == sale_name.lower(),
+        sale.sale_date >= periodo).all()
+    for venda in vendas:
+        quantidade_mes += sale.amount
+    return quantidade_mes        
