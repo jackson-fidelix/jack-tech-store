@@ -1,17 +1,11 @@
+@import url('/static/assets/colors.css');
+
 html {
     scroll-behavior: smooth;
 }
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    /* PALETA DE CORES
-    azul vibrante   >>  rgb(57, 57, 245)
-    azul petróleo   >>  rgb(12, 31, 74)
-    laranja         >>  rgb(219, 58, 2)
-    bege            >>  rgb(250, 191, 117)
-    branco          >>  rgb(255, 255, 255)
-    preto           >>  rgb(0, 0, 0)
-    */
     background: rgb(255, 255, 255);
 }
 
@@ -27,13 +21,11 @@ section {
     left: 0;
     align-items: center;
     justify-content: center;
-    background-color: rgb(219, 58, 2);
+    background-color: var(--third-verdeMilitar);
     display: flex;
-    border-radius: 1rem;
+    padding-block: .5rem;
     top: 0;
     z-index: 1000;
-    border-color: 1rem linear-gradient(to right #ffffff #000000,);
-    border-style:groove;
     margin-bottom: 10rem;
 }
 
