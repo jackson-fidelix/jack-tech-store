@@ -86,7 +86,7 @@ def buy_product():
     date = datetime.strptime(date, "%Y-%m-%d") if date else datetime.now()
     
     print(f"Nome do produto: {buy_product_name}")
-    print(f"Custo: {cost}")
+    print(f"Custo: {cost:.2f}")
     print(f"Quantidade: {amount}")
     print(f"Data: {date}")
 
@@ -96,8 +96,7 @@ def buy_product():
 
     print(product)
     if not product:
-        return jsonify({"error": "Produto não encontrado"}), 404
-    
+        return jsonify({"error": "Produto não encontrado"}), 404  
 
     new_buy = buy(
         id_register = product.id, # chave estrangeira do produto 
@@ -107,6 +106,10 @@ def buy_product():
         buy_date = date
     )
     db.session.add(new_buy)
+    db.session.commit()
+
+    product.average_cost_value = ((product.amount * product.average_cost_value) + (amount * cost)) / (product.amount + amount)
+    product.amount += amount
     db.session.commit()
 
     return redirect(url_for("homepage", _anchor="buy-form"))
@@ -189,7 +192,6 @@ def sale_product():
 
     if product:
         print('Produto encontrado!')
-
         new_sale = sale(
             id_register = product.id,
             product_name = sale_name,

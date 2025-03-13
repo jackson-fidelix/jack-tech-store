@@ -99,7 +99,7 @@ function loadStockReports(){
 
             let cost = document.createElement('td');
             cost.classList.add('tdBorder');
-            cost.textContent = item.average_cost;
+            cost.textContent = `R$ ${item.average_cost.toFixed(2).replace('.',',')}`;
 
             let sale = document.createElement('td');
             sale.classList.add('tdBorder');
