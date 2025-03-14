@@ -6,7 +6,7 @@ html {
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background: rgb(255, 255, 255);
+    background: var(--seventh-white);
 }
 
 section {
@@ -43,7 +43,7 @@ section {
 #nav-bar li a {
     display: flex;
     padding: 10px 20px;
-    color: rgb(255, 255, 255);
+    color: var(--seventh-white);
     text-decoration: none;
     font-size: clamp(1.3rem, 1.5vw, 2vw);
     font-weight: bold;
@@ -51,7 +51,7 @@ section {
 
 #nav-bar li a:hover {
     background-color: rgba(0, 0, 0, 0.171);
-    color: rgb(255, 255, 255);
+    color: var(--seventh-white);
 }
 
 .menu-icon {
@@ -64,8 +64,8 @@ section {
     width: 25px;
     height: 5px;
     margin: 5px 0;
-    background-color: rgb(255, 255, 255);
-    color: rgb(0, 0, 0);
+    background-color: var(--seventh-white);
+    color: var(--sixth-black);
 }
 
 /* Deixando as NAV responsiva */
@@ -106,7 +106,7 @@ a
     flex-direction:row;
     font-size: clamp(.8vw, 1.3vw, 1.8vw);
     text-align: justify;
-    color: rgb(255, 255, 255);
+    color: var(--sixth-black);
     border-radius: 15px;
     align-items: center;
     justify-content: center;
@@ -140,6 +140,7 @@ a
     padding: 15px;
     width: 33%;
     margin: 0 20px;
+    color: var(--seventh-white);
 }
 
 .about-app {
@@ -161,9 +162,9 @@ a
     width: clamp(50vw, 90vw, 100%);
     padding: 2vw;
     border-radius: 20px;
-    background-color: var(--sixth-black);
-    color: var(--seventh-white);
-    box-shadow: 0.7rem 0.7rem 5rem var(--fourth-loboDaMadeira);
+    background-color: var(--seventh-white);
+    color: var(--sixth-black);
+    box-shadow: 0.5rem 0.5rem 1rem var(--sixth-black);
 }
 
 
@@ -222,7 +223,7 @@ a
     border-radius: 1rem;
     cursor: pointer;
     transition: 0.3;
-    box-shadow: 0.7rem 0.7rem 5rem var(--fourth-loboDaMadeira);
+    box-shadow: 0.2rem 0.2rem 1rem var(--sixth-black);
 }
 
 #company-img:hover{opacity: 0.5;}
@@ -237,8 +238,7 @@ a
     width: 100%;
     height: 90%;
     overflow: auto;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: rgba(0, 0, 0, 0.8);
 }
 
 .modal-content {
@@ -256,7 +256,7 @@ a
     max-width: 700px;
     text-align: center;
     font-weight: bold;
-    color: rgb(219, 58, 2);
+    color: var(--seventh-white);
     padding: 10px 0;
     height: 100px;
 }
@@ -276,7 +276,7 @@ to {transform: scale(1)}
     position: absolute;
     top: clamp(25px, 10%, 70px);
     right: 35px;
-    color: rgb(255, 255, 255);
+    color: var(--seventh-white);
     font-size: 4rem;
     font-weight: bold;
     transition: 0.2s;
@@ -284,7 +284,7 @@ to {transform: scale(1)}
 
 .close:focus,
 .close:hover {
-    color: rgb(219, 58, 2);
+    color: var(--second-clarete);
     text-decoration: none;
     cursor: pointer;
 }
@@ -307,12 +307,12 @@ button {
     justify-content: center;
     max-width: 150px;
     border-radius: 1rem;
-    border-color: rgb(12, 31, 74);
+    border-color: var(--seventh-white);
     border-style: solid;
     border-width: .3rem;
-    color: rgb(255, 255, 255);
-    background-color: rgb(57, 57, 245);
-    box-shadow: .5rem .7rem 2rem rgb(0, 0, 0);
+    color: var(--seventh-white);
+    background-color: var(--third-verdeMilitar);
+    box-shadow: .4rem .4rem 1rem var(--sixth-black);
     font-size: clamp(1rem, 1vw, 1.2vw);
     font-weight: bold;
     cursor: pointer;
@@ -323,7 +323,7 @@ button {
     font-weight: bold;
     align-items: center;
     justify-content: center;
-    text-shadow: .5rem .5rem 1rem rgb(0, 0, 0);
+    text-shadow: .5rem .5rem 1rem var(--sixth-black);
     font-size: clamp(1.2rem, 1.3vw, 1.8vw);
 }
 
@@ -342,56 +342,56 @@ input {
     width: 170%;
     height: 2%;
     font-size: clamp(1rem, 1.5vw, 2rem);
-    border-radius: .5rem;
+    border-radius: .2rem;
     border-width: .2rem;
-    border-color: rgb(219, 58, 2);
+    border-color: var(--sixth-black);
     border-style: solid;
 }
 
 #register-form{
     border-radius: 1rem;
-    border-color: rgb(250, 191, 117);
+    border-color: var(--fourth-loboDaMadeira);
     border-width: .8vw;
-    background-color: rgb(250, 191, 117, .2);
+    background-color: var(--fifth-laranjaClaro);
     width: clamp(350px, 50vw, 700px);
     max-width: 80vw;
     padding: 1rem;
     border-style:groove;
     margin-left: 2rem;
-    box-shadow: .5rem .7rem 2rem rgb(219, 58, 2);
+    box-shadow: .5rem .5rem 2rem var(--sixth-black);
     scroll-margin-top: 60px;
 }
 
 #buy-form {
     border-radius: 1rem;
-    border-color: rgb(12, 31, 74);
+    border-color: var(--third-verdeMilitar);
     border-width: .8vw;
-    background-color: rgb(12, 31, 74, .3);
+    background-color: var(--fourth-loboDaMadeira);
     width: clamp(350px, 50vw, 700px);
     max-width: 80vw;
     padding: 1rem;
     border-style:groove;
     margin: auto;
-    box-shadow: .5rem .7rem 2rem rgb(57, 57, 245);
+    box-shadow: .5rem .5rem 2rem var(--sixth-black);
     scroll-margin-top: 60px;
 }
 
 #sell-form{
     border-radius: 1rem;
-    border-color: rgb(219, 58, 2);
+    border-color: var(--seventh-white);
     border-width: .8vw;
-    background-color: rgb(219, 58, 2, .2);
+    background-color: var(--fifth-laranjaClaro);
     width: clamp(350px, 50vw, 700px);
     max-width: 80vw;
     padding: 1rem;
     border-style: groove;
     margin-right: 2rem;
-    box-shadow: 1rem .7rem 2rem rgb(250, 191, 117);
+    box-shadow: .5rem .5rem 2rem var(--sixth-black);
     scroll-margin-top: 60px;
 }
 
 #title-reports{
-    background-color: rgb(57, 57, 245);
+    background-color: var(--fifth-laranjaClaro);
     width: 40%;
     border-radius: 1rem;
     padding: 1rem;
@@ -400,61 +400,64 @@ input {
     align-items: center;
     justify-content: center;
     margin: auto;
-    color: rgb(250, 191, 117);
-    box-shadow: 1rem 1rem 2rem rgb(0, 0, 0);
+    color: var(--sixth-black);
+    box-shadow: 1rem 1rem 2rem var(--sixth-black);
     font-size: clamp(2rem, 1.5vw, 2vw);
 }
 
 #reports-table {
     width: clamp(200px, 50vw, 900px);
     max-width: 90vw;
-    background-color: rgb(12, 31, 74);
-    color: white;
+    background-color: var(--fourth-loboDaMadeira);
+    color: var(--sixth-black);
+    font-weight: bold;
     border-radius: .5rem;
-    border-spacing: 1.2vw;
+    border-spacing: clamp(0.2rem, 1.2vw, 1.5rem);
     box-shadow: 1rem .7rem 2rem rgb(0, 0, 0);
-    font-size: clamp(.8rem, 1vw, 1.8rem);
+    font-size: clamp(0, 1vw, 1.8rem);
     padding: clamp(0, 1vw, 1.2vw);
     margin: auto;
 }
 
 thead {
-    color: rgb(219, 58, 2);
+    color: var(--second-clarete);
 }
 
 th {
-    border: .4rem solid rgba(255, 255, 255, 0.9);
+    border: .5rem solid var(--seventh-white);
     text-align: center;
     border-radius: 1rem;
     width: clamp(100px, 30vw, 150px); 
     max-width: 150px;
-    padding: clamp(.8rem, 1.5vw, 1.2rem);
-    padding-inline: clamp(1rem, 1.5vw, 2rem);
+    font-size: clamp(.6rem, 1.3vw, 2rem);
+    padding: clamp(0, 1.5vw, 1.2rem);
+    padding-inline: clamp(0, 1.5vw, 2rem);
     margin: 0 auto;
 }
 
 .tdBorder {
     white-space: nowrap;
-    border: .3rem solid rgba(255, 255, 255, 0.9);
+    border: .3rem solid var(--seventh-white);
     text-align: center;
     width: clamp(100px, 30vw, 150px); 
     max-width: 150px;
-    padding: clamp(.8rem, 1.5vw, 1.2rem);
-    padding-inline: clamp(1rem, 1.5vw, 2rem);
+    font-size: clamp(.6rem, 1.3vw, 2rem);
+    padding: clamp(0rem, 2vw, 1.2rem);
+    padding-inline: clamp(0rem, 2vw, 2rem);
     border-radius: 1rem;
 }
 
 #flash-message, #flash-buymsg{
     padding: .5rem;
     width: 130%;
-    color: rgb(255, 255, 255);
+    color: var(--seventh-white);
     font-size: clamp(1rem, 1.5vw, 2vw);
     border-radius: .5rem;
     font-style: bold;
 }
 
 .delete-button {
-    background-color: rgb(255, 0, 0);
+    background-color: var(--second-clarete);
     color: rgb(255, 255, 255);
     border: none;
     padding: 1rem;
@@ -464,7 +467,7 @@ th {
 }
 
 .delete-button:hover {
-    background-color: rgb(139, 0, 0);
+    background-color: var(--primary-purpuraDeTiro);
     color: rgb(169, 169, 169);
 }
 
