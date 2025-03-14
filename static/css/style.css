@@ -120,19 +120,20 @@ a
 .welcome {
     display: flex;
     flex-direction: column;
-    background-color: rgb(250, 191, 117);
+    background-color: var(--fifth-laranjaClaro);
     border-radius: 15px;
     align-items: center;
     justify-content: center;
     padding: 15px;
     width: 33%;
     margin: 0 20px;
+    color: var(--sixth-black);
 }
 
 .about-us {
     display: flex;
     flex-direction: column;
-    background-color: rgb(219, 58, 2);
+    background-color: var(--second-clarete);
     border-radius: 15px;
     align-items: center;
     justify-content: center;
@@ -144,13 +145,14 @@ a
 .about-app {
     display: flex;
     flex-direction: column;
-    background-color: rgb(57, 57, 245);
+    background-color: var(--fourth-loboDaMadeira);
     border-radius: 15px;
     align-items: center;
     justify-content: center;
     padding: 15px;
     width: 33%;
     margin: 0 20px;
+    color: var(--sixth-black);
 }
 
 .about-content {
@@ -159,9 +161,9 @@ a
     width: clamp(50vw, 90vw, 100%);
     padding: 2vw;
     border-radius: 20px;
-    background-color: rgb(255, 255, 255);
-    color: rgb(0, 0, 0);
-    box-shadow: 0.7rem 0.7rem 5rem rgb(57, 57, 245);
+    background-color: var(--sixth-black);
+    color: var(--seventh-white);
+    box-shadow: 0.7rem 0.7rem 5rem var(--fourth-loboDaMadeira);
 }
 
 
@@ -180,7 +182,7 @@ a
     max-width: 1800px; /* Limita a largura máxima */
     margin: auto;
     transition: 0.3;
-    background-color: rgb(12, 31, 74);
+    background-color: var(--primary-purpuraDeTiro);
     box-shadow: 0.8rem 0.8rem 5rem rgba(0, 0, 0, 0.7);
     scroll-margin-top: 60px;
 }
@@ -220,7 +222,7 @@ a
     border-radius: 1rem;
     cursor: pointer;
     transition: 0.3;
-    box-shadow: 0.7rem 0.7rem 5rem rgb(57, 57, 245);
+    box-shadow: 0.7rem 0.7rem 5rem var(--fourth-loboDaMadeira);
 }
 
 #company-img:hover{opacity: 0.5;}
