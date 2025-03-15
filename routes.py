@@ -190,7 +190,7 @@ def sale_product():
 
     product = register.query.filter(db.func.lower(register.product_name) == sale_name.lower()).first()
 
-    if product:
+    if product and product.amount > 0:
         print('Produto encontrado!')
         new_sale = sale(
             id_register = product.id,
@@ -207,10 +207,10 @@ def sale_product():
         product.amount -= sale_amount
         db.session.commit()
 
-        return redirect(url_for('homepage', _anchor='sell-form'))
+        return redirect(url_for('homepage', _anchor='sell-form', success=1))
     else:
-        print(f'O produto {sale_name} nao existe na table register.')
-        return redirect(url_for("reportspage"))
+        print(f'O produto {sale_name} nao existe na table register ou está com o estoque zerado.')
+        return redirect(url_for('homepage', _anchor='sell-form', error=1))
 
 
 def venda_mes(sale_name):
