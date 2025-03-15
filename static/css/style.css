@@ -350,9 +350,9 @@ input {
 
 #register-form{
     border-radius: 1rem;
-    border-color: var(--fourth-loboDaMadeira);
+    border-color: var(--seventh-white);
     border-width: .8vw;
-    background-color: var(--fifth-laranjaClaro);
+    background-color: var(--fourth-loboDaMadeira);
     width: clamp(350px, 50vw, 700px);
     max-width: 80vw;
     padding: 1rem;
@@ -364,9 +364,9 @@ input {
 
 #buy-form {
     border-radius: 1rem;
-    border-color: var(--third-verdeMilitar);
+    border-color: var(--seventh-white);
     border-width: .8vw;
-    background-color: var(--fourth-loboDaMadeira);
+    background-color: var(--fifth-laranjaClaro);
     width: clamp(350px, 50vw, 700px);
     max-width: 80vw;
     padding: 1rem;
@@ -378,9 +378,9 @@ input {
 
 #sell-form{
     border-radius: 1rem;
-    border-color: var(--seventh-white);
+    border-color: var(--third-verdeMilitar);
     border-width: .8vw;
-    background-color: var(--fifth-laranjaClaro);
+    background-color: var(--fourth-loboDaMadeira);
     width: clamp(350px, 50vw, 700px);
     max-width: 80vw;
     padding: 1rem;
