@@ -447,7 +447,7 @@ th {
     white-space: normal;
 }
 
-#flash-message, #flash-buymsg{
+#flash-message, #flash-buymsg, #flash-sale-msg{
     padding: .5rem;
     width: 130%;
     color: var(--seventh-white);
