@@ -170,3 +170,26 @@ function showBuy(event) {
         event.target.form.submit() // envia o form após a mensagem desaparecer, depos de 1.5 segundos
     }, 1500);
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+    let params = new URLSearchParams(window.location.search);
+
+    if (params.has("error")) {
+        showSale("Produto não encontrado ou com estoque zerado!", "red");
+    } else if(params.has("success")) {
+        showSale("Venda realizada com sucesso!", "green");
+    }
+});
+
+function showSale(message, color) {
+    let msg = document.getElementById("flash-sale-msg");
+
+    if (!msg) return;
+    msg.textContent = message;
+    msg.style.backgroundColor = color;
+    msg.style.display = "block";
+
+    setTimeout(() => {
+        msg.style.display = "none";
+    }, 3000); // esconde a mensagem após 3 minutos
+}
