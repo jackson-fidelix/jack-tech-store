@@ -155,21 +155,28 @@ function loadStockReports(){
 };
 
 
-document.addEventListener("DOMContentLoaded") {
-    event.preventDefault(); // evita que o formulário seja enviado imediatamente
+document.addEventListener("DOMContentLoaded", function() {
+    let param = new URLSearchParams(window.location.search);
 
+    if (param.has("error")) {
+        showBuy("Produto não encontrado!", "red");
+    } else if (param.has("success")) {
+        showBuy("Compra realizada com sucesso!", "green");
+    }
+});
+
+function showBuy(messageBuy, colorBuy) {
     let message = document.getElementById("flash-buymsg");
-    message.textContent = "Compra realizada com sucesso!";
+
+    message.textContent = messageBuy;
+    message.style.backgroundColor = colorBuy;
     message.style.display = "block";
 
     setTimeout(() => {
         message.style.display = "none";
     }, 3000); // esconde a mensagem após 3 minutos
-
-    setTimeout(() => {
-        event.target.form.submit() // envia o form após a mensagem desaparecer, depos de 1.5 segundos
-    }, 1500);
 }
+    
 
 document.addEventListener("DOMContentLoaded", function() {
     let params = new URLSearchParams(window.location.search);
