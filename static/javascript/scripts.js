@@ -155,7 +155,7 @@ function loadStockReports(){
 };
 
 
-function showBuy(event) {
+document.addEventListener("DOMContentLoaded") {
     event.preventDefault(); // evita que o formulário seja enviado imediatamente
 
     let message = document.getElementById("flash-buymsg");

@@ -96,7 +96,8 @@ def buy_product():
 
     print(product)
     if not product:
-        return jsonify({"error": "Produto não encontrado"}), 404  
+        print("Produto não encontrado!")
+        return redirect(url_for("homepage", _anchor="buy-form", error=1))
 
     new_buy = buy(
         id_register = product.id, # chave estrangeira do produto 
@@ -112,7 +113,7 @@ def buy_product():
     product.amount += amount
     db.session.commit()
 
-    return redirect(url_for("homepage", _anchor="buy-form"))
+    return redirect(url_for("homepage", _anchor="buy-form", success=1))
 
 
 @app.route('/api/stock_report', methods=['GET'])
