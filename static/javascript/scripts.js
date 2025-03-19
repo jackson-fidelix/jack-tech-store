@@ -101,6 +101,36 @@ function loadReport(){
             let tbody = document.getElementById('reports-tbody'); // selecionando o corpo da table
             tbody.innerHTML = '';
 
+            let rowHead = document.createElement('tr');
+            console.log("Criando cabeçalho da tabela Estoque.");
+
+            let idHead = document.createElement('th');
+            idHead.classList.add('th-stock');
+            idHead.textContent = 'ID';
+
+            let nameHead = document.createElement('th');
+            nameHead.classList.add('th-stock');
+            nameHead.textContent = 'Product Name';
+
+            let amountHead = document.createElement('th');
+            amountHead.classList.add('th-stock');
+            amountHead.textContent = 'Amount';
+
+            let averageCostHead = document.createElement('th');
+            averageCostHead.classList.add('th-stock');
+            averageCostHead.textContent = 'Average Cost';
+
+            let averageSaleHead = document.createElement('th');
+            averageSaleHead.classList.add('th-stock');
+            averageSaleHead.textContent = 'Average Sale - Month';
+
+            let dateHead = document.createElement('th');
+            dateHead.classList.add('th-stock');
+            dateHead.textContent = 'Register Date';
+
+            // preciso fazer o append desses dados na linha criada rowHead
+
+
             // iterando sobre os dados retornados da API e criando as linhas da tabela
             data.forEach(item => {
                 let row = document.createElement('tr');
