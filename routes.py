@@ -229,3 +229,40 @@ def venda_mes(sale_name):
         quantidade_mes += int(venda.amount)
     print(f'Foi vendido {quantidade_mes} itens.')
     return quantidade_mes        
+
+
+@app.route('/api/sale_reports', methods=['GET'])
+def get_sale_reports():
+    items = sale.query.all() # consulta a tabela SALE e retorna TODOS os registros
+
+    sale_report = []
+
+    for item in items:
+        sale_report.append({
+            'id': item.id, 
+            'id_register': item.id_register, 
+            'name': item.product_name,
+            'sale_value': item.sale_value,
+            'amount': item.amount,
+            'date': item.sale_date.strftime("%Y-%m-%d") # ajustando a formatação da data
+        })
+    
+    return jsonify(sale_report)
+
+
+@app.route('api/buy_reports', methods = ['GET'])
+def get_buy_reports():
+    items = buy.query.all() # consulta a tabela BUY e retorna TODOS os registros
+
+    buy_reports = []
+
+    for item in items:
+        buy_reports.append({
+            'id': item.id,
+            'id_register': item.id_register,
+            'name': item.product_name,
+            'amount': item.amount,
+            'date': item.date.strftime("%Y-%m-#d") # ajustando a formatação da data
+        })
+
+    return jsonify(buy_reports)
