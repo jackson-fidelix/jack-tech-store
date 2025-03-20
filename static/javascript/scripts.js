@@ -95,11 +95,14 @@ function loadReport(){
     if(selectValue == 'stock') {
         console.log('Estamos dentro da API!')
         fetch(apiUrl) // Fazendo a requisição para a API correpondente
-        .then(response => response.json())
-        .then(data => {
+        .then(response => response.json()) // Converte a resposta para JSON
+        .then(data => { // aqui vamos manipular o resultado do JSON no caso data(seria os valores)
             console.log('Dados recebidos da API:', data);
             let tbody = document.getElementById('reports-tbody'); // selecionando o corpo da table
             tbody.innerHTML = '';
+
+            let tHead = document.getElementById('reports-head');
+            tHead.innerHTML = '';
 
             let rowHead = document.createElement('tr');
             console.log("Criando cabeçalho da tabela Estoque.");
@@ -129,7 +132,15 @@ function loadReport(){
             dateHead.textContent = 'Register Date';
 
             // preciso fazer o append desses dados na linha criada rowHead
+            rowHead.appendChild(idHead);
+            rowHead.appendChild(nameHead);
+            rowHead.appendChild(amountHead);
+            rowHead.appendChild(averageCostHead);
+            rowHead.appendChild(averageSaleHead);
+            rowHead.appendChild(dateHead);
 
+            tHead.append(rowHead);
+            console.log('Título da tabela Estoque adicionado!')
 
             // iterando sobre os dados retornados da API e criando as linhas da tabela
             data.forEach(item => {
