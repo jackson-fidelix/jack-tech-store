@@ -250,7 +250,7 @@ def get_sale_reports():
     return jsonify(sale_report)
 
 
-@app.route('api/buy_reports', methods = ['GET'])
+@app.route('/api/buy_reports', methods = ['GET'])
 def get_buy_reports():
     items = buy.query.all() # consulta a tabela BUY e retorna TODOS os registros
 

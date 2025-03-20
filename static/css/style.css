@@ -423,7 +423,7 @@ thead {
     color: var(--second-clarete);
 }
 
-th {
+.th-stock {
     border: .5rem solid var(--seventh-white);
     text-align: center;
     border-radius: 1rem;

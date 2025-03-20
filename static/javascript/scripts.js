@@ -62,98 +62,161 @@ function showMessage(message, color) {
 }
 
 
-// essa funçao chama a funçao loadStockreports o carregamento da página
+/* essa funçao chama a funçao loadStockreports o carregamento da página
 window.onload = function() {
     if(window.location.pathname == "/reports") {
         loadStockReports();
     }
 };
+*/
 
 // function que carrega o relatório de estoque e faz consultas na api a cada 5000 milisegundos
-function loadStockReports(){
-    console.log('Estamos dentro da API!')
-    fetch('/api/stock_report') //aqui é feito a requisiçao para API que criamos no flask
-    .then(response => response.json())
-    .then(data => {
-        console.log('Dados recebidos da API:', data);
-        let tbody = document.getElementById('reports-tbody'); // selecionando o corpo da table
-        tbody.innerHTML = '';
+function loadReport(){
+    let selectValue = document.getElementById('choose-reports').value;
 
-        // iterando sobre os dados retornados da API e criando as linhas da tabela
-        data.forEach(item => {
-            let row = document.createElement('tr');
-            console.log('Linha criada com sucesso!'); // isso será apagado
+    if (!selectValue) {
+        console.warn('Nenhum relatório selecionado.');
+        return
+    }
 
-            // para cada item cria uma célula que vai ficar dentro da linha criada
-            let id = document.createElement('td');
-            id.classList.add('tdBorder');
-            id.textContent = item.id;
+    let apiUrl = '';
 
-            let productName = document.createElement('td');
-            productName.classList.add('tdBorder');
-            productName.textContent = item.product_name;
+    if (selectValue == 'stock') {
+        apiUrl = '/api/stock_report';
+    } else if (selectValue == 'sale') {
+        apiUrl = '/api/sale_report';
+    } else if (selectValue == 'buy') {
+        apiUrl = '/api/buy_report';
+    } else {
+        console.log('Opção Inválida!');
+        return;
+    }
 
-            let amount = document.createElement('td');
-            amount.classList.add('tdBorder');
-            amount.textContent = item.amount;
+    if(selectValue == 'stock') {
+        console.log('Estamos dentro da API!')
+        fetch(apiUrl) // Fazendo a requisição para a API correpondente
+        .then(response => response.json()) // Converte a resposta para JSON
+        .then(data => { // aqui vamos manipular o resultado do JSON no caso data(seria os valores)
+            console.log('Dados recebidos da API:', data);
+            let tbody = document.getElementById('reports-tbody'); // selecionando o corpo da table
+            tbody.innerHTML = '';
 
-            let cost = document.createElement('td');
-            cost.classList.add('tdBorder');
-            cost.textContent = `R$ ${item.average_cost.toFixed(2).replace('.',',')}`;
+            let tHead = document.getElementById('reports-head');
+            tHead.innerHTML = '';
 
-            let sale = document.createElement('td');
-            sale.classList.add('tdBorder');
-            sale.textContent = item.average_sale;
+            let rowHead = document.createElement('tr');
+            console.log("Criando cabeçalho da tabela Estoque.");
 
-            let date = document.createElement('td');
-            date.classList.add('tdBorder');
-            date.textContent = item.date;
+            let idHead = document.createElement('th');
+            idHead.classList.add('th-stock');
+            idHead.textContent = 'ID';
 
-            let deleteButtonCell = document.createElement('td');
-            let deleteButton = document.createElement('button');
-            deleteButton.innerHTML = '<i class="fa-solid fa-trash"></i>';
-            deleteButton.classList.add('delete-button');
-            deleteButton.onclick = function() {
-                console.log(`Produto ${item.id} marcado para deletar`);
-                if (confirm('Tem certeza que deseja excluir esse produto?')) {
-                    
-                    let form = document.createElement('form');
-                    form.method = 'POST'; // usando post para enviar o form para o Flask, pois o HTML nao suporta o DELETE
-                    form.action = '/deleteTr';
+            let nameHead = document.createElement('th');
+            nameHead.classList.add('th-stock');
+            nameHead.textContent = 'Product Name';
 
-                    let productId = document.createElement('input');
-                    productId.type = 'hidden'; 
-                    productId.name = 'id';
-                    productId.value = item.id;
+            let amountHead = document.createElement('th');
+            amountHead.classList.add('th-stock');
+            amountHead.textContent = 'Amount';
 
-                    form.appendChild(productId);
+            let averageCostHead = document.createElement('th');
+            averageCostHead.classList.add('th-stock');
+            averageCostHead.textContent = 'Average Cost';
 
-                    document.body.appendChild(form);
-                    form.submit();
+            let averageSaleHead = document.createElement('th');
+            averageSaleHead.classList.add('th-stock');
+            averageSaleHead.textContent = 'Average Sale - Month';
+
+            let dateHead = document.createElement('th');
+            dateHead.classList.add('th-stock');
+            dateHead.textContent = 'Register Date';
+
+            // preciso fazer o append desses dados na linha criada rowHead
+            rowHead.appendChild(idHead);
+            rowHead.appendChild(nameHead);
+            rowHead.appendChild(amountHead);
+            rowHead.appendChild(averageCostHead);
+            rowHead.appendChild(averageSaleHead);
+            rowHead.appendChild(dateHead);
+
+            tHead.append(rowHead);
+            console.log('Título da tabela Estoque adicionado!')
+
+            // iterando sobre os dados retornados da API e criando as linhas da tabela
+            data.forEach(item => {
+                let row = document.createElement('tr');
+                console.log('Linha criada com sucesso!'); // isso será apagado
+
+                // para cada item cria uma célula que vai ficar dentro da linha criada
+                let id = document.createElement('td');
+                id.classList.add('tdBorder');
+                id.textContent = item.id;
+
+                let productName = document.createElement('td');
+                productName.classList.add('tdBorder');
+                productName.textContent = item.product_name;
+
+                let amount = document.createElement('td');
+                amount.classList.add('tdBorder');
+                amount.textContent = item.amount;
+
+                let cost = document.createElement('td');
+                cost.classList.add('tdBorder');
+                cost.textContent = `R$ ${item.average_cost.toFixed(2).replace('.',',')}`;
+
+                let sale = document.createElement('td');
+                sale.classList.add('tdBorder');
+                sale.textContent = item.average_sale;
+
+                let date = document.createElement('td');
+                date.classList.add('tdBorder');
+                date.textContent = item.date;
+
+                let deleteButtonCell = document.createElement('td');
+                let deleteButton = document.createElement('button');
+                deleteButton.innerHTML = '<i class="fa-solid fa-trash"></i>';
+                deleteButton.classList.add('delete-button');
+                deleteButton.onclick = function() {
+                    console.log(`Produto ${item.id} marcado para deletar`);
+                    if (confirm('Tem certeza que deseja excluir esse produto?')) {
+
+                        let form = document.createElement('form');
+                        form.method = 'POST'; // usando post para enviar o form para o Flask, pois o HTML nao suporta o DELETE
+                        form.action = '/deleteTr';
+
+                        let productId = document.createElement('input');
+                        productId.type = 'hidden'; 
+                        productId.name = 'id';
+                        productId.value = item.id;
+
+                        form.appendChild(productId);
+
+                        document.body.appendChild(form);
+                        form.submit();
+                    };
+
                 };
 
-            };
+                deleteButtonCell.appendChild(deleteButton);
 
-            deleteButtonCell.appendChild(deleteButton);
+                console.log('Todas as células foram criadas com sucesso!');
 
-            console.log('Todas as células foram criadas com sucesso!');
+                row.appendChild(id);
+                row.appendChild(productName);
+                row.appendChild(amount);
+                row.appendChild(cost);
+                row.appendChild(sale);
+                row.appendChild(date);
+                row.appendChild(deleteButtonCell);
+                console.log('Células adicionadas a linha!');
 
-            row.appendChild(id);
-            row.appendChild(productName);
-            row.appendChild(amount);
-            row.appendChild(cost);
-            row.appendChild(sale);
-            row.appendChild(date);
-            row.appendChild(deleteButtonCell);
-            console.log('Células adicionadas a linha!');
-
-            tbody.appendChild(row);
-            console.log('Linha adicionada a tabela!');
-        });
-    })
-    .catch(error => console.error('Erro ao carregar o relatório: ',error));
-};
-
+                tbody.appendChild(row);
+                console.log('Linha adicionada a tabela!');
+            });
+        })
+        .catch(error => console.error('Erro ao carregar o relatório: ',error));
+    };
+}
 
 document.addEventListener("DOMContentLoaded", function() {
     let param = new URLSearchParams(window.location.search);

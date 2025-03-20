@@ -25,25 +25,28 @@
         </ul>
     </nav>
 
-    <br><br><br><br><br><br>
+    <br><br>
 
+    <section id="select-report">
+        <select name="choose-reports" id="choose-reports" onchange="loadReport()">
+            <option value="" disabled selected>Selecione um relatório</option> 
+            <option value="stock">Estoque</option>
+            <option value="sale">Venda</option>
+            <option value="buy">Compra</option>
+        </select>
+    </section>
+
+    <br> <!-- APAGAR ESSES CAMPOS DENECESSÁRIOS -->
     <h1 id="title-reports"> Relatório de Estoque Atual </h1>
 
     <br><br><br>
 
     <table id="reports-table">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nome do Produto</th>
-                <th>Quantidade</th>
-                <th>Custo Médio</th>
-                <th>Venda Média/mês</th>
-                <th>Data de Cadastro</th>
-            </tr>
+        <thead id="reports-head">
+            
         </thead>
         <tbody id="reports-tbody">
-            <!-- aqui eu coloco o for para o flask puxar os dados -->
+            <!-- aqui o JS cria a tabela -->
         </tbody>
     </table>
     
