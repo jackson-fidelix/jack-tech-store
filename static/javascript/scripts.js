@@ -98,6 +98,11 @@ function loadReport(){
         .then(response => response.json()) // Converte a resposta para JSON
         .then(data => { // aqui vamos manipular o resultado do JSON no caso data(seria os valores)
             console.log('Dados recebidos da API:', data);
+
+            let titleTable = document.getElementById('title-tables');
+            titleTable.innerHTML = ''
+            titleTable.textContent = 'Relatório de Estoque';
+
             let tbody = document.getElementById('reports-tbody'); // selecionando o corpo da table
             tbody.innerHTML = '';
 
