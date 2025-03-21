@@ -231,7 +231,7 @@ def venda_mes(sale_name):
     return quantidade_mes        
 
 
-@app.route('/api/sale_reports', methods=['GET'])
+@app.route('/api/sale_report', methods=['GET'])
 def get_sale_reports():
     items = sale.query.all() # consulta a tabela SALE e retorna TODOS os registros
 
@@ -250,7 +250,7 @@ def get_sale_reports():
     return jsonify(sale_report)
 
 
-@app.route('/api/buy_reports', methods = ['GET'])
+@app.route('/api/buy_report', methods = ['GET'])
 def get_buy_reports():
     items = buy.query.all() # consulta a tabela BUY e retorna TODOS os registros
 

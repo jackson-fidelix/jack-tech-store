@@ -93,7 +93,7 @@ function loadReport(){
     }
 
     if(selectValue == 'stock') {
-        console.log('Estamos dentro da API!')
+        console.log('Estamos dentro da Stock API !')
         fetch(apiUrl) // Fazendo a requisição para a API correpondente
         .then(response => response.json()) // Converte a resposta para JSON
         .then(data => { // aqui vamos manipular o resultado do JSON no caso data(seria os valores)
@@ -220,7 +220,25 @@ function loadReport(){
             });
         })
         .catch(error => console.error('Erro ao carregar o relatório: ',error));
-    };
+    } else if (selectValue == 'sale') {
+            console.log('Estamos dentro da Sale API!')
+            fetch(apiUrl) // requisição para a API sale
+            .then(response => response.json()) // tranforma a response, que seria resposta em json
+            .then(data => {
+
+                console.log('Recebemos os dados: ', data);
+
+                let titleTable = document.getElementById('title-tables');
+                titleTable.innerHTML = '';
+                titleTable.textContent = 'Relatório de Vendas';
+
+                let tHead = document.getElementById('reports-head');
+                tHead.innerHTML = '';
+
+                let tBody = document.getElementById('reports-tbody');
+                tBody.innerHTML = '';
+            })
+    }
 }
 
 document.addEventListener("DOMContentLoaded", function() {
