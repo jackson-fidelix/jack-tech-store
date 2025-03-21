@@ -376,7 +376,7 @@ input {
     scroll-margin-top: 60px;
 }
 
-#sell-form{
+#sell-form {
     border-radius: 1rem;
     border-color: var(--third-verdeMilitar);
     border-width: .8vw;
@@ -390,7 +390,7 @@ input {
     scroll-margin-top: 60px;
 }
 
-#title-reports{
+.title-tables {
     background-color: var(--fifth-laranjaClaro);
     width: 40%;
     border-radius: 1rem;
