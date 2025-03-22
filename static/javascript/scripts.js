@@ -97,7 +97,7 @@ function loadReport(){
         fetch(apiUrl) // Fazendo a requisição para a API correpondente
         .then(response => response.json()) // Converte a resposta para JSON
         .then(data => { // aqui vamos manipular o resultado do JSON no caso data(seria os valores)
-            console.log('Dados recebidos da API:', data);
+            console.log('Dados recebidos da API e convertidos para JSON:', data);
 
             let titleTable = document.getElementById('title-tables');
             titleTable.innerHTML = ''
@@ -226,7 +226,7 @@ function loadReport(){
             .then(response => response.json()) // tranforma a response, que seria resposta em json
             .then(data => {
 
-                console.log('Recebemos os dados: ', data);
+                console.log('Recebemos os dados e convertemos para JSON: ', data);
 
                 let titleTable = document.getElementById('title-tables');
                 titleTable.innerHTML = '';
