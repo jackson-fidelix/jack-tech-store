@@ -83,16 +83,6 @@ function loadReport(){
 
     if (selectValue == 'stock') {
         apiUrl = '/api/stock_report';
-    } else if (selectValue == 'sale') {
-        apiUrl = '/api/sale_report';
-    } else if (selectValue == 'buy') {
-        apiUrl = '/api/buy_report';
-    } else {
-        console.log('Opção Inválida!');
-        return;
-    }
-
-    if(selectValue == 'stock') {
         console.log('Estamos dentro da Stock API !')
         fetch(apiUrl) // Fazendo a requisição para a API correpondente
         .then(response => response.json()) // Converte a resposta para JSON
@@ -221,7 +211,8 @@ function loadReport(){
         })
         .catch(error => console.error('Erro ao carregar o relatório: ',error));
     } else if (selectValue == 'sale') {
-            console.log('Estamos dentro da Sale API!')
+        apiUrl = '/api/sale_report';
+        console.log('Estamos dentro da Sale API!')
             fetch(apiUrl) // requisição para a API sale
             .then(response => response.json()) // tranforma a response, que seria resposta em json
             .then(data => {
@@ -235,9 +226,26 @@ function loadReport(){
                 let tHead = document.getElementById('reports-head');
                 tHead.innerHTML = '';
 
+                let rowHead = document.createElement('tr');
+                console.log('Criando o cabeçalho da tabela VENDA.');
+
+                let idHead = document.createElement('th');
+                idHead.classList.add('th-sale');
+                idHead.textContent = "ID";
+
+                let
+
+
                 let tBody = document.getElementById('reports-tbody');
                 tBody.innerHTML = '';
+
+
             })
+    } else if (selectValue == 'buy') {
+        apiUrl = '/api/buy_report';
+    } else {
+        console.log('Opção Inválida!');
+        return;
     }
 }
 
