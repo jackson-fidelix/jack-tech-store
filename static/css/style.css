@@ -405,10 +405,24 @@ input {
     font-size: clamp(2rem, 1.5vw, 2vw);
 }
 
-#reports-table {
+.stock-table {
     width: clamp(200px, 50vw, 900px);
     max-width: 90vw;
     background-color: var(--fourth-loboDaMadeira);
+    color: var(--sixth-black);
+    font-weight: bold;
+    border-radius: .5rem;
+    border-spacing: clamp(0.2rem, 1.2vw, 1.5rem);
+    box-shadow: 1rem .7rem 2rem rgb(0, 0, 0);
+    font-size: clamp(0, 1vw, 1.8rem);
+    padding: clamp(0, 1vw, 1.2vw);
+    margin: auto;
+}
+
+.sale-table {
+    width: clamp(200px, 50vw, 900px);
+    max-width: 90vw;
+    background-color: var(--third-verdeMilitar);
     color: var(--sixth-black);
     font-weight: bold;
     border-radius: .5rem;
@@ -435,7 +449,8 @@ thead {
 }
 
 .th-sale {
-    border: .5rem solid var(--sixth-black);
+    border: .5rem solid var(--seventh-white);
+    color: var(--fourth-loboDaMadeira);
     text-align: center;
     border-radius: 1rem;
     width: clamp(100px, 50vw, 25rem); 

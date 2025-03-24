@@ -79,6 +79,9 @@ function loadReport(){
         return
     }
 
+    let table = document.getElementById('reports-table');
+    // remove as classes, para não replicar na outra tabela
+    table.classList.remove("stock-table", "sale-table", "buy-table");
     let apiUrl = '';
 
     if (selectValue == 'stock') {
@@ -88,6 +91,8 @@ function loadReport(){
         .then(response => response.json()) // Converte a resposta para JSON
         .then(data => { // aqui vamos manipular o resultado do JSON no caso data(seria os valores)
             console.log('Dados recebidos da API e convertidos para JSON:', data);
+
+            table.classList.add('stock-table');
 
             let titleTable = document.getElementById('title-tables');
             titleTable.innerHTML = ''
@@ -216,8 +221,9 @@ function loadReport(){
             fetch(apiUrl) // requisição para a API sale
             .then(response => response.json()) // tranforma a response, que seria resposta em json
             .then(data => {
-
                 console.log('Recebemos os dados e convertemos para JSON: ', data);
+
+                table.classList.add('sale-table');
 
                 let titleTable = document.getElementById('title-tables');
                 titleTable.innerHTML = '';
@@ -233,8 +239,29 @@ function loadReport(){
                 idHead.classList.add('th-sale');
                 idHead.textContent = "ID";
 
-                let
+                let nameHead = document.createElement('th');
+                nameHead.classList.add('th-sale');
+                nameHead.textContent = "Product Name";
 
+                let amountHead = document.createElement('th');
+                amountHead.classList.add('th-sale');
+                amountHead.textContent = 'Amount';
+
+                let saleHead = document.createElement('th');
+                saleHead.classList.add('th-sale');
+                saleHead.textContent = 'Sale';
+
+                let dateHead = document.createElement('th');
+                dateHead.classList.add('th-sale');
+                dateHead.textContent = 'Date';
+
+                rowHead.appendChild(idHead);
+                rowHead.appendChild(nameHead);
+                rowHead.appendChild(amountHead);
+                rowHead.appendChild(saleHead);
+                rowHead.appendChild(dateHead);
+
+                tHead.appendChild(rowHead);
 
                 let tBody = document.getElementById('reports-tbody');
                 tBody.innerHTML = '';
