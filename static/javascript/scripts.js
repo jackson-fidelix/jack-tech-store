@@ -149,27 +149,27 @@ function loadReport(){
 
                 // para cada item cria uma célula que vai ficar dentro da linha criada
                 let id = document.createElement('td');
-                id.classList.add('tdBorder');
+                id.classList.add('td-stock');
                 id.textContent = item.id;
 
                 let productName = document.createElement('td');
-                productName.classList.add('tdBorder');
+                productName.classList.add('td-stock');
                 productName.textContent = item.product_name;
 
                 let amount = document.createElement('td');
-                amount.classList.add('tdBorder');
+                amount.classList.add('td-stock');
                 amount.textContent = item.amount;
 
                 let cost = document.createElement('td');
-                cost.classList.add('tdBorder');
+                cost.classList.add('td-stock');
                 cost.textContent = `R$ ${item.average_cost.toFixed(2).replace('.',',')}`;
 
                 let sale = document.createElement('td');
-                sale.classList.add('tdBorder');
+                sale.classList.add('td-stock');
                 sale.textContent = item.average_sale;
 
                 let date = document.createElement('td');
-                date.classList.add('tdBorder');
+                date.classList.add('td-stock');
                 date.textContent = item.date;
 
                 let deleteButtonCell = document.createElement('td');
@@ -268,22 +268,25 @@ function loadReport(){
                 data.forEach(item => {
                     let row = document.createElement('tr');
 
-                    let id = document.createElement('th');
-                    id.classList.add('sale-table');
+                    let id = document.createElement('td');
+                    id.classList.add('td-sale');
                     id.textContent = item.id;
 
-                    let product = document.createElement('th');
-                    //product.classList.add('sale-table');
-                    product.textContent = item.product_name;
+                    let product = document.createElement('td');
+                    product.classList.add('td-sale');
+                    product.textContent = item.name;
 
-                    let amount = document.createElement('th');
+                    let amount = document.createElement('td');
+                    amount.classList.add('td-sale');
                     amount.textContent = item.amount;
 
-                    let sale = document.createElement('th');
-                    sale.textContent = item.sale_value;
+                    let sale = document.createElement('td');
+                    sale.classList.add('td-sale');
+                    sale.textContent = `R$ ${item.sale_value.toFixed(2).replace('.',',')}`;
 
                     let date = document.createElement('th');
-                    date.textContent = item.sale_date;
+                    date.classList.add('td-sale');
+                    date.textContent = item.date;
 
                     row.appendChild(id);
                     row.appendChild(product);
