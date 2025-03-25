@@ -409,7 +409,6 @@ input {
     width: clamp(200px, 50vw, 900px);
     max-width: 90vw;
     background-color: var(--fourth-loboDaMadeira);
-    color: var(--sixth-black);
     font-weight: bold;
     border-radius: .5rem;
     border-spacing: clamp(0.2rem, 1.2vw, 1.5rem);
@@ -417,6 +416,36 @@ input {
     font-size: clamp(0, 1vw, 1.8rem);
     padding: clamp(0, 1vw, 1.2vw);
     margin: auto;
+}
+
+.th-stock {
+    border: none;
+    color: var(--seventh-white);
+    background-color: var(--third-verdeMilitar);
+    text-align: center;
+    border-radius: 1rem;
+    width: clamp(100px, 50vw, 25rem); 
+    font-size: clamp(.7rem, 1.2vw, 2rem); 
+    padding: clamp(0.1rem, 3vw, 1rem); /* DEIXAR O PRIMEIRO ZERADO, POIS SE FOR > 0, NÃO FUNCIONARÁ EM CELULARES */
+    padding-inline: clamp(0.1rem, 2.5vw, 5rem); 
+    box-shadow: .2rem .2rem .5rem var(--sixth-black);
+    margin: 0 auto;
+}
+
+.td-stock {
+    border: none;
+    color: var(--sixth-black);
+    background-color: var(--seventh-white);
+    text-align: center;
+    width: clamp(100px, 40vw, 22rem); 
+    font-size: clamp(.6rem, 1vw, 2rem); 
+    padding: clamp(0.1rem, 1vw, 1rem); /* DEIXAR O PRIMEIRO ZERADO, POIS SE FOR > 0, NÃO FUNCIONARÁ EM CELULARES */
+    padding-inline: clamp(0.1rem, 2vw, 3rem); /* DEIXAR O PRIMEIRO ZERADO, POIS SE FOR > 0, NÃO FUNCIONARÁ EM CELULARES */
+    box-shadow: .2rem .2rem .5rem var(--sixth-black);
+    border-radius: 1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
 }
 
 .sale-table {
@@ -433,40 +462,30 @@ input {
     margin: auto;
 }
 
-thead {
-    color: var(--second-clarete);
-}
-
-.th-stock {
-    border: .5rem solid var(--seventh-white);
-    text-align: center;
-    border-radius: 1rem;
-    width: clamp(100px, 50vw, 25rem); 
-    font-size: clamp(.7rem, 1.2vw, 2rem); 
-    padding: clamp(0.1rem, 3vw, 1rem); /* DEIXAR O PRIMEIRO ZERADO, POIS SE FOR > 0, NÃO FUNCIONARÁ EM CELULARES */
-    padding-inline: clamp(0.1rem, 2.5vw, 5rem); 
-    margin: 0 auto;
-}
-
 .th-sale {
-    border: .5rem solid var(--seventh-white);
-    color: var(--fourth-loboDaMadeira);
+    border: none;
+    color: var(--sixth-black);
+    background-color: var(--fourth-loboDaMadeira);
     text-align: center;
     border-radius: 1rem;
     width: clamp(100px, 50vw, 25rem); 
     font-size: clamp(.7rem, 1.2vw, 2rem); 
     padding: clamp(0.1rem, 3vw, 1rem); /* DEIXAR O PRIMEIRO ZERADO, POIS SE FOR > 0, NÃO FUNCIONARÁ EM CELULARES */
     padding-inline: clamp(0.1rem, 2.5vw, 5rem); 
+    box-shadow: .2rem .2rem .5rem var(--sixth-black);
     margin: 0 auto;
 }
 
-.tdBorder {
-    border: .3rem solid var(--seventh-white);
+.td-sale {
+    border: none;
+    color: var(--third-verdeMilitar);
+    background-color: var(--seventh-white);
     text-align: center;
     width: clamp(100px, 40vw, 22rem); 
     font-size: clamp(.6rem, 1vw, 2rem); 
     padding: clamp(0.1rem, 1vw, 1rem); /* DEIXAR O PRIMEIRO ZERADO, POIS SE FOR > 0, NÃO FUNCIONARÁ EM CELULARES */
     padding-inline: clamp(0.1rem, 2vw, 3rem); /* DEIXAR O PRIMEIRO ZERADO, POIS SE FOR > 0, NÃO FUNCIONARÁ EM CELULARES */
+    box-shadow: .2rem .2rem .5rem var(--sixth-black);
     border-radius: 1rem;
     overflow: hidden;
     text-overflow: ellipsis;
