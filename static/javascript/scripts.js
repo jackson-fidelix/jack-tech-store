@@ -265,8 +265,35 @@ function loadReport(){
 
                 let tBody = document.getElementById('reports-tbody');
                 tBody.innerHTML = '';
+                data.forEach(item => {
+                    let row = document.createElement('tr');
 
+                    let id = document.createElement('th');
+                    id.classList.add('sale-table');
+                    id.textContent = item.id;
 
+                    let product = document.createElement('th');
+                    //product.classList.add('sale-table');
+                    product.textContent = item.product_name;
+
+                    let amount = document.createElement('th');
+                    amount.textContent = item.amount;
+
+                    let sale = document.createElement('th');
+                    sale.textContent = item.sale_value;
+
+                    let date = document.createElement('th');
+                    date.textContent = item.sale_date;
+
+                    row.appendChild(id);
+                    row.appendChild(product);
+                    row.appendChild(amount);
+                    row.appendChild(sale);
+                    row.appendChild(date);
+
+                    tBody.appendChild(row);
+                })
+                
             })
     } else if (selectValue == 'buy') {
         apiUrl = '/api/buy_report';
