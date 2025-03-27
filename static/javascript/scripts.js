@@ -288,11 +288,16 @@ function loadReport(){
                     date.classList.add('td-sale');
                     date.textContent = item.date;
 
+                    let btnDelete = document.createElement('button');
+                    btnDelete.classList.add('delete-button')
+                    btnDelete.innerHTML = '<i class="fa-solid fa-trash"></i>';
+
                     row.appendChild(id);
                     row.appendChild(product);
                     row.appendChild(amount);
                     row.appendChild(sale);
                     row.appendChild(date);
+                    row.appendChild(btnDelete);
 
                     tBody.appendChild(row);
                 })
