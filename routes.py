@@ -266,3 +266,8 @@ def get_buy_reports():
         })
 
     return jsonify(buy_reports)
+
+
+@app.route('/deleteSale', methods=['POST'])
+def deleteSale():
+    
