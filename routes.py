@@ -268,6 +268,18 @@ def get_buy_reports():
     return jsonify(buy_reports)
 
 
-@app.route('/deleteSale', methods=['POST'])
+@app.route('/deleteSale', methods=['DELETE'])
 def deleteSale():
+    product_id = request.form.get('id')
+
+    item = sale.query.filter_by(id=product_id)
+
+    if item:
+        db.session.delete(item)
+        db.session.commit()
+        print(f'Produto {product_id} removido com sucesso!')
+    else:
+        print(f'Produto {product_id} não encontrado ou com estoque zerado!')
     
+    return redirect(url_for("reporstapage", _anchor="/api/sale_report"))
+
