@@ -268,12 +268,12 @@ def get_buy_reports():
     return jsonify(buy_reports)
 
 
-@app.route('/deleteSale', methods=['DELETE'])
+@app.route('/deleteSale', methods=['POST'])
 def deleteSale():
     product_id = request.form.get('id')
 
-    item = sale.query.filter_by(id=product_id)
-
+    item = sale.query.filter_by(id=product_id).first()
+    print(item)
     if item:
         db.session.delete(item)
         db.session.commit()
@@ -281,5 +281,4 @@ def deleteSale():
     else:
         print(f'Produto {product_id} não encontrado ou com estoque zerado!')
     
-    return redirect(url_for("reporstapage", _anchor="/api/sale_report"))
-
+    return redirect(url_for("reportspage", _anchor="/api/sale_report"))
