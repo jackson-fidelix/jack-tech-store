@@ -288,9 +288,14 @@ function loadReport(){
                     date.classList.add('td-sale');
                     date.textContent = item.date;
                     
+                    let btnDeleteCell = document.createElement('th');
                     let btnDelete = document.createElement('button');
                     btnDelete.classList.add('delete-button')
                     btnDelete.innerHTML = '<i class="fa-solid fa-trash"></i>';
+                    btnDelete.onclick = function() {
+                        console.log(`O produto ${item.id} foi marcado para ser removido.`);
+                        confirm(`Tem certeza que deseja remover ${item.name}?`)
+                    }
 
                     row.appendChild(id);
                     row.appendChild(product);
