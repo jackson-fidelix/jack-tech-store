@@ -97,6 +97,8 @@ function loadReport(){
             let titleTable = document.getElementById('title-tables');
             titleTable.innerHTML = ''
             titleTable.textContent = 'Relatório de Estoque';
+            titleTable.style.backgroundColor = 'var(--third-verdeMilitar)';
+            titleTable.style.color = 'var(--fourth-loboDaMadeira)';
 
             let tbody = document.getElementById('reports-tbody'); // selecionando o corpo da table
             tbody.innerHTML = '';
@@ -228,6 +230,8 @@ function loadReport(){
                 let titleTable = document.getElementById('title-tables');
                 titleTable.innerHTML = '';
                 titleTable.textContent = 'Relatório de Vendas';
+                titleTable.style.backgroundColor = 'var(--fourth-loboDaMadeira)';
+                titleTable.style.color = 'var(--third-verdeMilitar)';
 
                 let tHead = document.getElementById('reports-head');
                 tHead.innerHTML = '';
@@ -294,7 +298,21 @@ function loadReport(){
                     btnDelete.innerHTML = '<i class="fa-solid fa-trash"></i>';
                     btnDelete.onclick = function() {
                         console.log(`O produto ${item.id} foi marcado para ser removido.`);
-                        confirm(`Tem certeza que deseja remover ${item.name}?`)
+                        confirm(`Tem certeza que deseja remover ${item.name}?`);
+
+                        let form = document.createElement('form');
+                        form.method = 'POST';
+                        form.action = '/deleteSale';
+                        console.log('Recebemos a ação do form - deleteSale');
+
+                        let itemId = document.createElement('input');
+                        itemId.type = 'hidden';
+                        itemId.name = 'id';
+                        itemId.value = item.id;
+
+                        form.appendChild(itemId);
+                        document.body.appendChild(form);
+                        form.submit();
                     }
 
                     row.appendChild(id);
