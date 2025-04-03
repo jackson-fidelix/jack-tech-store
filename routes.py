@@ -2,6 +2,7 @@ from main import app
 from database.models import db, register, buy, sale
 from flask import Flask, render_template, request, redirect, url_for, jsonify, flash
 from datetime import datetime, timedelta
+from sqlalchemy import text
 
 # Rotas
 
@@ -198,6 +199,7 @@ def sale_product():
             product_name = sale_name,
             sale_value = sale_value,
             amount = sale_amount,
+            net_profit = 0,
             sale_date = sale_date
         )
         db.session.add(new_sale)
@@ -206,6 +208,10 @@ def sale_product():
         venda_mensal = venda_mes(sale_name)
         product.average_sale_amount = venda_mensal
         product.amount -= sale_amount
+        db.session.commit()
+
+        profit = calculate_net_profit(product.id)
+        new_sale.net_profit = profit
         db.session.commit()
 
         return redirect(url_for('homepage', _anchor='sell-form', success=1))
@@ -230,6 +236,30 @@ def venda_mes(sale_name):
     print(f'Foi vendido {quantidade_mes} itens.')
     return quantidade_mes        
 
+
+def calculate_net_profit(product_id): # cálculo de lucro líquido
+    print("DEBUG - Product ID:", product_id)
+    query = text("""
+        SELECT 
+            r.id AS product_id,
+            r.product_name AS product_name,
+            r.average_cost_value AS cost_value,
+            s.sale_value AS sale_value,
+            s.amount AS sale_amount
+        FROM register r
+        JOIN sale s ON r.id = s.id_register
+        WHERE r.id = :product_id;
+    """)
+    
+    result = db.session.execute(query, {"product_id": product_id}).fetchone() # fetch one para buscar um produto de acordo com o ID
+    if result:
+        cost_value = result.cost_value
+        sale_value = result.sale_value
+        sale_amount = result.sale_amount
+
+        net_profit = (sale_value - cost_value) * sale_amount
+        return net_profit
+    return 0
 
 @app.route('/api/sale_report', methods=['GET'])
 def get_sale_reports():
@@ -270,6 +300,7 @@ def get_buy_reports():
 
 @app.route('/deleteSale', methods=['POST'])
 def deleteSale():
+
     product_id = request.form.get('id')
 
     item = sale.query.filter_by(id=product_id).first()
@@ -282,3 +313,4 @@ def deleteSale():
         print(f'Produto {product_id} não encontrado ou com estoque zerado!')
     
     return redirect(url_for("reportspage", _anchor="/api/sale_report"))
+

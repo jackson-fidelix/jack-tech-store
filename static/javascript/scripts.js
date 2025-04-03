@@ -255,6 +255,10 @@ function loadReport(){
                 saleHead.classList.add('th-sale');
                 saleHead.textContent = 'Sale';
 
+                let netProfitHead = document.createElement('th');
+                netProfitHead.classList.add('th-sale');
+                netProfitHead.textContent = 'Net Profit';
+
                 let dateHead = document.createElement('th');
                 dateHead.classList.add('th-sale');
                 dateHead.textContent = 'Date';
@@ -263,6 +267,7 @@ function loadReport(){
                 rowHead.appendChild(nameHead);
                 rowHead.appendChild(amountHead);
                 rowHead.appendChild(saleHead);
+                rowHead.appendChild(netProfitHead);
                 rowHead.appendChild(dateHead);
 
                 tHead.appendChild(rowHead);
@@ -287,6 +292,10 @@ function loadReport(){
                     let sale = document.createElement('td');
                     sale.classList.add('td-sale');
                     sale.textContent = `R$ ${item.sale_value.toFixed(2).replace('.',',')}`;
+
+                    let netProfit = document.createElement('td');
+                    netProfit.classList.add('td-sale');
+                    netProfit.textContent = `R$ ${item.net_profit}`;
 
                     let date = document.createElement('th');
                     date.classList.add('td-sale');
@@ -319,6 +328,7 @@ function loadReport(){
                     row.appendChild(product);
                     row.appendChild(amount);
                     row.appendChild(sale);
+                    row.appendChild(netProfit);
                     row.appendChild(date);
                     row.appendChild(btnDelete);
 
