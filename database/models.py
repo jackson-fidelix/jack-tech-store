@@ -28,4 +28,5 @@ class sale(db.Model):
     sale_value = db.Column(db.Float, nullable=False)
     amount = db.Column(db.Integer, nullable=False)
     net_profit = db.Column(db.Float, nullable=False)
+    net_margin = db.Column(db.Integer, nullable=False)
     sale_date = db.Column(db.DateTime, nullable=False)

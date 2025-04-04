@@ -200,6 +200,7 @@ def sale_product():
             sale_value = sale_value,
             amount = sale_amount,
             net_profit = calculate_net_profit(product.id),
+            net_margin = calculate_net_margin(product.id),
             sale_date = sale_date
         )
         db.session.add(new_sale)
@@ -209,10 +210,6 @@ def sale_product():
         product.average_sale_amount = venda_mensal
         product.amount -= sale_amount
         db.session.commit()
-
-        #profit = calculate_net_profit(product.id)
-        #new_sale.net_profit = profit
-        #db.session.commit()
 
         return redirect(url_for('homepage', _anchor='sell-form', success=1))
     else:
@@ -263,6 +260,32 @@ def calculate_net_profit(product_id): # cálculo de lucro líquido
         return net_profit
     return 0
 
+
+def calculate_net_margin(product_id):
+    query = text("""
+        SELECT 
+            r.id AS product_id,
+            r.product_name AS product_name,
+            r.average_cost_value AS cost_value,
+            s.sale_value AS sale_value,
+            s.amount AS amount,
+            s.net_profit AS net_profit
+        FROM register r
+        JOIN sale s ON r.id = s.id_register
+        WHERE r.id = :product_id;     
+    """)
+
+    result = db.session.execute(query, {"product_id": product_id}).fetchone()
+    print("DEBUG resut:", result)
+    if result:
+        net_profit = result.net_profit
+        sale_value = result.sale_value
+
+        net_margin = (net_profit / sale_value) * 100 # fórmula da margem líquida
+        return net_margin
+    return 0
+
+
 @app.route('/api/sale_report', methods=['GET'])
 def get_sale_reports():
     items = sale.query.all() # consulta a tabela SALE e retorna TODOS os registros
@@ -276,6 +299,7 @@ def get_sale_reports():
             'name': item.product_name,
             'sale_value': item.sale_value,
             'net_profit': item.net_profit,
+            'net_margin': item.net_margin,
             'amount': item.amount,
             'date': item.sale_date.strftime("%Y-%m-%d") # ajustando a formatação da data
         })
