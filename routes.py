@@ -199,7 +199,7 @@ def sale_product():
             product_name = sale_name,
             sale_value = sale_value,
             amount = sale_amount,
-            net_profit = 0,
+            net_profit = calculate_net_profit(product.id),
             sale_date = sale_date
         )
         db.session.add(new_sale)
@@ -210,9 +210,9 @@ def sale_product():
         product.amount -= sale_amount
         db.session.commit()
 
-        profit = calculate_net_profit(product.id)
-        new_sale.net_profit = profit
-        db.session.commit()
+        #profit = calculate_net_profit(product.id)
+        #new_sale.net_profit = profit
+        #db.session.commit()
 
         return redirect(url_for('homepage', _anchor='sell-form', success=1))
     else:
@@ -252,12 +252,14 @@ def calculate_net_profit(product_id): # cálculo de lucro líquido
     """)
     
     result = db.session.execute(query, {"product_id": product_id}).fetchone() # fetch one para buscar um produto de acordo com o ID
+    print("DEBUG - Resultado SQL:", result)  # Verificar se está retornando algo
     if result:
         cost_value = result.cost_value
         sale_value = result.sale_value
         sale_amount = result.sale_amount
 
         net_profit = (sale_value - cost_value) * sale_amount
+        print(net_profit)
         return net_profit
     return 0
 
@@ -273,10 +275,11 @@ def get_sale_reports():
             'id_register': item.id_register, 
             'name': item.product_name,
             'sale_value': item.sale_value,
+            'net_profit': item.net_profit,
             'amount': item.amount,
             'date': item.sale_date.strftime("%Y-%m-%d") # ajustando a formatação da data
         })
-    
+    print(sale_report)
     return jsonify(sale_report)
 
 

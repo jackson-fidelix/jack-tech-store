@@ -295,7 +295,7 @@ function loadReport(){
 
                     let netProfit = document.createElement('td');
                     netProfit.classList.add('td-sale');
-                    netProfit.textContent = `R$ ${item.net_profit}`;
+                    netProfit.textContent = `R$ ${item.net_profit.toFixed(2).replace('.',',')}`;
 
                     let date = document.createElement('th');
                     date.classList.add('td-sale');
