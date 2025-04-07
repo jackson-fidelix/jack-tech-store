@@ -267,6 +267,10 @@ function loadReport(){
                 dateHead.classList.add('th-sale');
                 dateHead.textContent = 'Date';
 
+                let monthlySalesHead = document.createElement('th');
+                monthlySalesHead.classList.add('th-sale');
+                monthlySalesHead.textContent = 'Monthly Sales';
+
                 rowHead.appendChild(idHead);
                 rowHead.appendChild(nameHead);
                 rowHead.appendChild(amountHead);
@@ -274,6 +278,7 @@ function loadReport(){
                 rowHead.appendChild(netProfitHead);
                 rowHead.appendChild(netMarginHead);
                 rowHead.appendChild(dateHead);
+                rowHead.appendChild(monthlySalesHead);
 
                 tHead.appendChild(rowHead);
 
@@ -306,11 +311,14 @@ function loadReport(){
                     netMargin.classList.add('td-sale');
                     netMargin.textContent = `${item.net_margin.toFixed(2).replace('.', ',')}%`;
 
-                    let date = document.createElement('th');
+                    let date = document.createElement('td');
                     date.classList.add('td-sale');
                     date.textContent = item.date;
+
+                    let monthlySales = document.createElement('td');
+                    monthlySales.classList.add('td-sale');
+                    monthlySales.textContent = item.monthy_sales;
                     
-                    let btnDeleteCell = document.createElement('th');
                     let btnDelete = document.createElement('button');
                     btnDelete.classList.add('delete-button')
                     btnDelete.innerHTML = '<i class="fa-solid fa-trash"></i>';
@@ -340,6 +348,7 @@ function loadReport(){
                     row.appendChild(netProfit);
                     row.appendChild(netMargin);
                     row.appendChild(date);
+                    row.appendChild(monthlySales);
                     row.appendChild(btnDelete);
 
                     tBody.appendChild(row);
