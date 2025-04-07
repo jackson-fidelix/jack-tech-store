@@ -249,7 +249,7 @@ def calculate_net_profit(product_id): # cálculo de lucro líquido
     """)
     
     result = db.session.execute(query, {"product_id": product_id}).fetchone() # fetch one para buscar um produto de acordo com o ID
-    print("DEBUG - Resultado SQL:", result)  # Verificar se está retornando algo
+    print("DEBUG NET PROFIT - Resultado SQL:", result)  # Verificar se está retornando algo
     if result:
         cost_value = result.cost_value
         sale_value = result.sale_value
@@ -258,7 +258,8 @@ def calculate_net_profit(product_id): # cálculo de lucro líquido
         net_profit = (sale_value - cost_value) * sale_amount
         print(net_profit)
         return net_profit
-    return 0
+    else:
+        return 0
 
 
 def calculate_net_margin(product_id):
@@ -283,7 +284,8 @@ def calculate_net_margin(product_id):
 
         net_margin = (net_profit / sale_value) * 100 # fórmula da margem líquida
         return net_margin
-    return 0
+    else:
+        return 0
 
 
 @app.route('/api/sale_report', methods=['GET'])
