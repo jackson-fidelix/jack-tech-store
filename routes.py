@@ -201,13 +201,16 @@ def sale_product():
             amount = sale_amount,
             net_profit = calculate_net_profit(product.average_cost_value, sale_value, sale_amount, product.id),
             net_margin = 0,
+            sale_per_month = 0,
             sale_date = sale_date
         )
         db.session.add(new_sale)
         db.session.commit()
     
         venda_mensal = venda_mes(sale_name)
-        product.average_sale_amount = venda_mensal
+        new_sale.sale_per_month = venda_mensal 
+        product.average_sale_amount  = venda_mensal
+        print(new_sale.sale_per_month)
         product.amount -= sale_amount
         db.session.commit()
 
@@ -295,6 +298,7 @@ def get_sale_reports():
             'sale_value': item.sale_value,
             'net_profit': item.net_profit,
             'net_margin': item.net_margin,
+            'monthy_sales': item.sale_per_month,
             'amount': item.amount,
             'date': item.sale_date.strftime("%Y-%m-%d") # ajustando a formatação da data
         })
