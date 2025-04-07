@@ -199,8 +199,8 @@ def sale_product():
             product_name = sale_name,
             sale_value = sale_value,
             amount = sale_amount,
-            net_profit = calculate_net_profit(product.id),
-            net_margin = calculate_net_margin(product.id),
+            net_profit = calculate_net_profit(product.average_cost_value, sale_value, sale_amount, product.id),
+            net_margin = 0,
             sale_date = sale_date
         )
         db.session.add(new_sale)
@@ -209,6 +209,10 @@ def sale_product():
         venda_mensal = venda_mes(sale_name)
         product.average_sale_amount = venda_mensal
         product.amount -= sale_amount
+        db.session.commit()
+
+        net_margin = calculate_net_margin(product.id)
+        new_sale.net_margin = net_margin
         db.session.commit()
 
         return redirect(url_for('homepage', _anchor='sell-form', success=1))
@@ -234,34 +238,20 @@ def venda_mes(sale_name):
     return quantidade_mes        
 
 
-def calculate_net_profit(product_id): # cálculo de lucro líquido
+def calculate_net_profit(product_average_cost_value, product_sale_value, product_amount, product_id): # cálculo de lucro líquido
     print("DEBUG - Product ID:", product_id)
-    query = text("""
-        SELECT 
-            r.id AS product_id,
-            r.product_name AS product_name,
-            r.average_cost_value AS cost_value,
-            s.sale_value AS sale_value,
-            s.amount AS sale_amount
-        FROM register r
-        JOIN sale s ON r.id = s.id_register
-        WHERE r.id = :product_id;
-    """)
     
-    result = db.session.execute(query, {"product_id": product_id}).fetchone() # fetch one para buscar um produto de acordo com o ID
-    print("DEBUG NET PROFIT - Resultado SQL:", result)  # Verificar se está retornando algo
-    if result:
-        cost_value = result.cost_value
-        sale_value = result.sale_value
-        sale_amount = result.sale_amount
+    if product_id:
+        cost_value = product_average_cost_value
+        sale_value = product_sale_value
+        sale_amount = product_amount
 
         net_profit = (sale_value - cost_value) * sale_amount
-        print(net_profit)
         return net_profit
     else:
         return 0
-
-
+    
+    
 def calculate_net_margin(product_id):
     query = text("""
         SELECT 
@@ -273,16 +263,19 @@ def calculate_net_margin(product_id):
             s.net_profit AS net_profit
         FROM register r
         JOIN sale s ON r.id = s.id_register
-        WHERE r.id = :product_id;     
+        WHERE r.id = :product_id    
     """)
 
     result = db.session.execute(query, {"product_id": product_id}).fetchone()
     print("DEBUG resut:", result)
+
     if result:
         net_profit = result.net_profit
         sale_value = result.sale_value
+        amount = result.amount
 
-        net_margin = (net_profit / sale_value) * 100 # fórmula da margem líquida
+        net_margin = (net_profit / (sale_value * amount)) * 100 # fórmula da margem líquida
+        print(f'Net Margin:{net_margin}')
         return net_margin
     else:
         return 0
@@ -342,4 +335,3 @@ def deleteSale():
         print(f'Produto {product_id} não encontrado ou com estoque zerado!')
     
     return redirect(url_for("reportspage", _anchor="/api/sale_report"))
-
