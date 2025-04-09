@@ -519,3 +519,26 @@ input {
 .delete-button i {
     margin: 0;
 }
+
+#choose-reports {
+    padding: 1rem;
+    border-radius: .5rem;
+    background-color: var(--second-clarete);
+    color: var(--seventh-white);
+    font-size: clamp(.5rem, 1.2rem, 2vw);
+    font-style: italic;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+#choose-reports:hover {
+    animation: shake 0.5s ease;
+}
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(10px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+  }
