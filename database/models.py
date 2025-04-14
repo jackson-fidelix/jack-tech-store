@@ -11,13 +11,12 @@ class register(db.Model):
     date = db.Column(db.DateTime, nullable=False)
 
 class buy(db.Model):
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True, unique=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     id_register = db.Column(db.Integer, db.ForeignKey('register.id'), nullable=False)
     product_name = db.Column(db.String(100),index=True, nullable=False)
     cost_value = db.Column(db.Float, nullable=False)
-    amount = db.Column(db.Integer, nullable=False)                                                                                                                                                                                                                                                                              
+    amount = db.Column(db.Integer, nullable=False)
     buy_date = db.Column(db.DateTime, nullable=False)
-
     #criando a relação para acessar os dados
     product = db.relationship('register', backref=db.backref('purchases', lazy=True))
 

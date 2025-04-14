@@ -492,6 +492,20 @@ input {
     white-space: normal;
 }
 
+.buy-table {
+    width: clamp(200px, 50vw, 900px);
+    max-width: 90vw;
+    background-color: var(--primary-purpuraDeTiro);
+    color: var(--sixth-black);
+    font-weight: bold;
+    border-radius: .5rem;
+    border-spacing: clamp(0.2rem, 1.2vw, 1.5rem);
+    box-shadow: 1rem .7rem 2rem rgb(0, 0, 0);
+    font-size: clamp(0, 1vw, 1.8rem);
+    padding: clamp(0, 1vw, 1.2vw);
+    margin: auto;
+} 
+
 #flash-message, #flash-buymsg, #flash-sale-msg{
     padding: .5rem;
     width: 130%;

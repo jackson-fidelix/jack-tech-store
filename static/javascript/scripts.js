@@ -357,6 +357,14 @@ function loadReport(){
             })
     } else if (selectValue == 'buy') {
         apiUrl = '/api/buy_report';
+        console.log('Estamos dentro da Buy API.')
+            fetch(apiUrl) // requisição os dados da API
+            .then(response => response.json()) // transformando em JSON
+            .then(data => {
+                console.log('Recebemos os dados e convertemos para JSON: ', data);
+
+                table.classList.add('buy-table');
+            })
     } else {
         console.log('Opção Inválida!');
         return;

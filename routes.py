@@ -309,7 +309,7 @@ def get_sale_reports():
 @app.route('/api/buy_report', methods = ['GET'])
 def get_buy_reports():
     items = buy.query.all() # consulta a tabela BUY e retorna TODOS os registros
-
+    print(items)
     buy_reports = []
 
     for item in items:
@@ -318,8 +318,9 @@ def get_buy_reports():
             'id_register': item.id_register,
             'name': item.product_name,
             'amount': item.amount,
-            'date': item.date.strftime("%Y-%m-#d") # ajustando a formatação da data
+            'date': item.buy_date.strftime("%Y-%m-%d") # ajustando a formatação da data
         })
+
 
     return jsonify(buy_reports)
 
