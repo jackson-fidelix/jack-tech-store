@@ -363,7 +363,51 @@ function loadReport(){
             .then(data => {
                 console.log('Recebemos os dados e convertemos para JSON: ', data);
 
+                let titleTableBuy = document.getElementById('title-tables');
+                titleTableBuy.innerHTML = '';
+                titleTableBuy.textContent = 'Compra de Mercadorias';
+                titleTableBuy.style.backgroundColor = 'var(--primary-purpuraDeTiro)';
+                titleTableBuy.style.color = 'var(--fifth-laranjaClaro)';
+
                 table.classList.add('buy-table');
+
+                let tHead = document.getElementById('reports-head');
+                tHead.innerHTML = '';
+
+                let rowHead = document.createElement('tr');
+                console.log('Criada a linha do BUY HEAD.');
+
+                let id = document.createElement('th');
+                id.classList.add('th-buy');
+                id.textContent = 'ID';
+
+                let productName = document.createElement('th');
+                productName.classList.add('th-buy');
+                productName.textContent = 'Product Name';
+
+                let costValue = document.createElement('th');
+                costValue.classList.add('th-buy');
+                costValue.textContent = 'Cost Value';
+
+                let amount = document.createElement('th');
+                amount.classList.add('th-buy');
+                amount.textContent = 'Amount';
+
+                let buyDate = document.createElement('th');
+                buyDate.classList.add('th-buy');
+                buyDate.textContent = 'Buy Date';
+                
+                rowHead.appendChild(id);
+                rowHead.appendChild(productName);
+                rowHead.appendChild(costValue);
+                rowHead.appendChild(amount);
+                rowHead.appendChild(buyDate);
+
+                tHead.appendChild(rowHead);
+
+                let tBody = document.getElementById('reports-tbody');
+                tBody.innerHTML = '';
+
             })
     } else {
         console.log('Opção Inválida!');

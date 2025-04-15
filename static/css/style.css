@@ -495,7 +495,7 @@ input {
 .buy-table {
     width: clamp(200px, 50vw, 900px);
     max-width: 90vw;
-    background-color: var(--primary-purpuraDeTiro);
+    background-color: var(--fifth-laranjaClaro);
     color: var(--sixth-black);
     font-weight: bold;
     border-radius: .5rem;
@@ -504,7 +504,21 @@ input {
     font-size: clamp(0, 1vw, 1.8rem);
     padding: clamp(0, 1vw, 1.2vw);
     margin: auto;
-} 
+}
+
+.th-buy {
+    border: none;
+    color: var(--seventh-white);
+    background-color: var(--primary-purpuraDeTiro);
+    text-align: center;
+    border-radius: 1rem;
+    width: clamp(100px, 50vw, 25rem); 
+    font-size: clamp(.7rem, 1.2vw, 2rem); 
+    padding: clamp(0.1rem, 3vw, 1rem); /* DEIXAR O PRIMEIRO ZERADO, POIS SE FOR > 0, NÃO FUNCIONARÁ EM CELULARES */
+    padding-inline: clamp(0.1rem, 2.5vw, 5rem); 
+    box-shadow: .2rem .2rem .5rem var(--sixth-black);
+    margin: 0 auto;
+}
 
 #flash-message, #flash-buymsg, #flash-sale-msg{
     padding: .5rem;
