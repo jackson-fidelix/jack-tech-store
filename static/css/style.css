@@ -508,7 +508,7 @@ input {
 
 .th-buy {
     border: none;
-    color: var(--seventh-white);
+    color: var(--fifth-laranjaClaro);
     background-color: var(--primary-purpuraDeTiro);
     text-align: center;
     border-radius: 1rem;
@@ -518,6 +518,22 @@ input {
     padding-inline: clamp(0.1rem, 2.5vw, 5rem); 
     box-shadow: .2rem .2rem .5rem var(--sixth-black);
     margin: 0 auto;
+}
+
+.td-buy {
+    border: none;
+    color: var(--sixth-black);
+    background-color: var(--seventh-white);
+    text-align: center;
+    width: clamp(100px, 40vw, 22rem); 
+    font-size: clamp(.6rem, 1vw, 2rem); 
+    padding: clamp(0.1rem, 1vw, 1rem); /* DEIXAR O PRIMEIRO ZERADO, POIS SE FOR > 0, NÃO FUNCIONARÁ EM CELULARES */
+    padding-inline: clamp(0.1rem, 2vw, 3rem); /* DEIXAR O PRIMEIRO ZERADO, POIS SE FOR > 0, NÃO FUNCIONARÁ EM CELULARES */
+    box-shadow: .2rem .2rem .5rem var(--sixth-black);
+    border-radius: 1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
 }
 
 #flash-message, #flash-buymsg, #flash-sale-msg{

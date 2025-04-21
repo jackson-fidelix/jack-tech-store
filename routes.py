@@ -317,10 +317,10 @@ def get_buy_reports():
             'id': item.id,
             'id_register': item.id_register,
             'name': item.product_name,
+            'cost': item.cost_value,
             'amount': item.amount,
             'date': item.buy_date.strftime("%Y-%m-%d") # ajustando a formatação da data
         })
-
 
     return jsonify(buy_reports)
 

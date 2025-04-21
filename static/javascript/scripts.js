@@ -407,6 +407,38 @@ function loadReport(){
 
                 let tBody = document.getElementById('reports-tbody');
                 tBody.innerHTML = '';
+                data.forEach(item => {
+
+                    let rowBuy = document.createElement('tr');
+
+                    let idProduct = document.createElement('td');
+                    idProduct.classList.add('td-buy');
+                    idProduct.textContent = item["id"];
+
+                    let productName = document.createElement('td');
+                    productName.classList.add('td-buy');
+                    productName.textContent = item["name"];
+
+                    let costValue = document.createElement('td');
+                    costValue.classList.add('td-buy');
+                    costValue.textContent = `R$ ${item["cost"].toFixed(2).replace('.',',')}`;
+
+                    let amountBuy = document.createElement('td');
+                    amountBuy.classList.add('td-buy');
+                    amountBuy.textContent = item["amount"];
+
+                    let buyDate = document.createElement('td');
+                    buyDate.classList.add('td-buy');
+                    buyDate.textContent = item["date"];
+
+                    rowBuy.appendChild(idProduct);
+                    rowBuy.appendChild(productName);
+                    rowBuy.appendChild(costValue);
+                    rowBuy.appendChild(amountBuy);
+                    rowBuy.appendChild(buyDate);
+
+                    tBody.appendChild(rowBuy);
+                })
 
             })
     } else {
