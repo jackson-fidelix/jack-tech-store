@@ -2,6 +2,7 @@ from main import app
 from database.models import db, register, buy, sale
 from flask import Flask, render_template, request, redirect, url_for, jsonify, flash
 from datetime import datetime, timedelta
+from sqlalchemy import text
 
 # Rotas
 
@@ -152,6 +153,7 @@ def get_stock_report():
             'average_sale': product.average_sale_amount,
             'date': product.date.strftime("%Y-%m-%d ")  # Formatação da data
         })
+    print(stock_report)
 
     return jsonify(stock_report)
 
@@ -198,14 +200,23 @@ def sale_product():
             product_name = sale_name,
             sale_value = sale_value,
             amount = sale_amount,
+            net_profit = calculate_net_profit(product.average_cost_value, sale_value, sale_amount, product.id),
+            net_margin = 0,
+            sale_per_month = 0,
             sale_date = sale_date
         )
         db.session.add(new_sale)
         db.session.commit()
     
         venda_mensal = venda_mes(sale_name)
-        product.average_sale_amount = venda_mensal
+        new_sale.sale_per_month = venda_mensal 
+        product.average_sale_amount  = venda_mensal
+        print(new_sale.sale_per_month)
         product.amount -= sale_amount
+        db.session.commit()
+
+        net_margin = calculate_net_margin(product.id)
+        new_sale.net_margin = net_margin
         db.session.commit()
 
         return redirect(url_for('homepage', _anchor='sell-form', success=1))
@@ -231,6 +242,49 @@ def venda_mes(sale_name):
     return quantidade_mes        
 
 
+def calculate_net_profit(product_average_cost_value, product_sale_value, product_amount, product_id): # cálculo de lucro líquido
+    print("DEBUG - Product ID:", product_id)
+    
+    if product_id:
+        cost_value = product_average_cost_value
+        sale_value = product_sale_value
+        sale_amount = product_amount
+
+        net_profit = (sale_value - cost_value) * sale_amount
+        return net_profit
+    else:
+        return 0
+    
+    
+def calculate_net_margin(product_id):
+    query = text("""
+        SELECT 
+            r.id AS product_id,
+            r.product_name AS product_name,
+            r.average_cost_value AS cost_value,
+            s.sale_value AS sale_value,
+            s.amount AS amount,
+            s.net_profit AS net_profit
+        FROM register r
+        JOIN sale s ON r.id = s.id_register
+        WHERE r.id = :product_id    
+    """)
+
+    result = db.session.execute(query, {"product_id": product_id}).fetchone()
+    print("DEBUG resut:", result)
+
+    if result:
+        net_profit = result.net_profit
+        sale_value = result.sale_value
+        amount = result.amount
+
+        net_margin = (net_profit / (sale_value * amount)) * 100 # fórmula da margem líquida
+        print(f'Net Margin:{net_margin}')
+        return net_margin
+    else:
+        return 0
+
+
 @app.route('/api/sale_report', methods=['GET'])
 def get_sale_reports():
     items = sale.query.all() # consulta a tabela SALE e retorna TODOS os registros
@@ -243,17 +297,38 @@ def get_sale_reports():
             'id_register': item.id_register, 
             'name': item.product_name,
             'sale_value': item.sale_value,
+            'net_profit': item.net_profit,
+            'net_margin': item.net_margin,
+            'monthy_sales': item.sale_per_month,
             'amount': item.amount,
             'date': item.sale_date.strftime("%Y-%m-%d") # ajustando a formatação da data
         })
-    
+    print(sale_report)
+
     return jsonify(sale_report)
+
+
+@app.route('/deleteSale', methods=['POST'])
+def deleteSale():
+
+    product_id = request.form.get('id')
+
+    item = sale.query.filter_by(id=product_id).first()
+    print(item)
+    if item:
+        db.session.delete(item)
+        db.session.commit()
+        print(f'Produto {product_id} removido com sucesso!')
+    else:
+        print(f'Produto {product_id} não encontrado ou com estoque zerado!')
+    
+    return redirect(url_for("reportspage", _anchor="/api/sale_report"))
 
 
 @app.route('/api/buy_report', methods = ['GET'])
 def get_buy_reports():
-    items = buy.query.all() # consulta a tabela BUY e retorna TODOS os registros
 
+    items = buy.query.all() # consulta a tabela BUY e retorna TODOS os registros
     buy_reports = []
 
     for item in items:
@@ -261,8 +336,29 @@ def get_buy_reports():
             'id': item.id,
             'id_register': item.id_register,
             'name': item.product_name,
+            'cost': item.cost_value,
             'amount': item.amount,
-            'date': item.date.strftime("%Y-%m-#d") # ajustando a formatação da data
+            'date': item.buy_date.strftime("%Y-%m-%d") # ajustando a formatação da data
         })
-
+    print(buy_reports)
+    
     return jsonify(buy_reports)
+
+
+@app.route('/api/deleteBuy', methods=['POST'])
+def deleteBuy():
+    product_id = request.form.get('id')
+
+    item = buy.query.filter_by(id=product_id).first()
+    print(item)
+    if item:
+        db.session.delete(item)
+        db.session.commit()
+        print(f'Produto {product_id} removido com sucesso!')
+    else:
+        print(f'Produto {product_id} não encontrado ou com estoque ZERADO!')
+    
+    return redirect(url_for("reportspage", anchor="/api/buy_report"))
+
+
+

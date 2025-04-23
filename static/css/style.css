@@ -492,6 +492,50 @@ input {
     white-space: normal;
 }
 
+.buy-table {
+    width: clamp(200px, 50vw, 900px);
+    max-width: 90vw;
+    background-color: var(--fifth-laranjaClaro);
+    color: var(--sixth-black);
+    font-weight: bold;
+    border-radius: .5rem;
+    border-spacing: clamp(0.2rem, 1.2vw, 1.5rem);
+    box-shadow: 1rem .7rem 2rem rgb(0, 0, 0);
+    font-size: clamp(0, 1vw, 1.8rem);
+    padding: clamp(0, 1vw, 1.2vw);
+    margin: auto;
+}
+
+.th-buy {
+    border: none;
+    color: var(--fifth-laranjaClaro);
+    background-color: var(--primary-purpuraDeTiro);
+    text-align: center;
+    border-radius: 1rem;
+    width: clamp(100px, 50vw, 25rem); 
+    font-size: clamp(.7rem, 1.2vw, 2rem); 
+    padding: clamp(0.1rem, 3vw, 1rem); /* DEIXAR O PRIMEIRO ZERADO, POIS SE FOR > 0, NÃO FUNCIONARÁ EM CELULARES */
+    padding-inline: clamp(0.1rem, 2.5vw, 5rem); 
+    box-shadow: .2rem .2rem .5rem var(--sixth-black);
+    margin: 0 auto;
+}
+
+.td-buy {
+    border: none;
+    color: var(--sixth-black);
+    background-color: var(--seventh-white);
+    text-align: center;
+    width: clamp(100px, 40vw, 22rem); 
+    font-size: clamp(.6rem, 1vw, 2rem); 
+    padding: clamp(0.1rem, 1vw, 1rem); /* DEIXAR O PRIMEIRO ZERADO, POIS SE FOR > 0, NÃO FUNCIONARÁ EM CELULARES */
+    padding-inline: clamp(0.1rem, 2vw, 3rem); /* DEIXAR O PRIMEIRO ZERADO, POIS SE FOR > 0, NÃO FUNCIONARÁ EM CELULARES */
+    box-shadow: .2rem .2rem .5rem var(--sixth-black);
+    border-radius: 1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+}
+
 #flash-message, #flash-buymsg, #flash-sale-msg{
     padding: .5rem;
     width: 130%;
@@ -519,3 +563,26 @@ input {
 .delete-button i {
     margin: 0;
 }
+
+#choose-reports {
+    padding: 1rem;
+    border-radius: .5rem;
+    background-color: var(--second-clarete);
+    color: var(--seventh-white);
+    font-size: clamp(.5rem, 1.2rem, 2vw);
+    font-style: italic;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+#choose-reports:hover {
+    animation: shake 0.5s ease;
+}
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(10px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+  }

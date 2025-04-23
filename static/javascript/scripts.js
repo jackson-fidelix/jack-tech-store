@@ -97,6 +97,8 @@ function loadReport(){
             let titleTable = document.getElementById('title-tables');
             titleTable.innerHTML = ''
             titleTable.textContent = 'Relatório de Estoque';
+            titleTable.style.backgroundColor = 'var(--third-verdeMilitar)';
+            titleTable.style.color = 'var(--fourth-loboDaMadeira)';
 
             let tbody = document.getElementById('reports-tbody'); // selecionando o corpo da table
             tbody.innerHTML = '';
@@ -228,6 +230,8 @@ function loadReport(){
                 let titleTable = document.getElementById('title-tables');
                 titleTable.innerHTML = '';
                 titleTable.textContent = 'Relatório de Vendas';
+                titleTable.style.backgroundColor = 'var(--fourth-loboDaMadeira)';
+                titleTable.style.color = 'var(--third-verdeMilitar)';
 
                 let tHead = document.getElementById('reports-head');
                 tHead.innerHTML = '';
@@ -251,15 +255,30 @@ function loadReport(){
                 saleHead.classList.add('th-sale');
                 saleHead.textContent = 'Sale';
 
+                let netProfitHead = document.createElement('th');
+                netProfitHead.classList.add('th-sale');
+                netProfitHead.textContent = 'Net Profit';
+
+                let netMarginHead = document.createElement('th');
+                netMarginHead.classList.add('th-sale');
+                netMarginHead.textContent = 'Net Margin';
+
                 let dateHead = document.createElement('th');
                 dateHead.classList.add('th-sale');
                 dateHead.textContent = 'Date';
+
+                let monthlySalesHead = document.createElement('th');
+                monthlySalesHead.classList.add('th-sale');
+                monthlySalesHead.textContent = 'Monthly Sales';
 
                 rowHead.appendChild(idHead);
                 rowHead.appendChild(nameHead);
                 rowHead.appendChild(amountHead);
                 rowHead.appendChild(saleHead);
+                rowHead.appendChild(netProfitHead);
+                rowHead.appendChild(netMarginHead);
                 rowHead.appendChild(dateHead);
+                rowHead.appendChild(monthlySalesHead);
 
                 tHead.appendChild(rowHead);
 
@@ -284,19 +303,52 @@ function loadReport(){
                     sale.classList.add('td-sale');
                     sale.textContent = `R$ ${item.sale_value.toFixed(2).replace('.',',')}`;
 
-                    let date = document.createElement('th');
+                    let netProfit = document.createElement('td');
+                    netProfit.classList.add('td-sale');
+                    netProfit.textContent = `R$ ${item.net_profit.toFixed(2).replace('.',',')}`;
+                    
+                    let netMargin = document.createElement('td');
+                    netMargin.classList.add('td-sale');
+                    netMargin.textContent = `${item.net_margin.toFixed(2).replace('.', ',')}%`;
+
+                    let date = document.createElement('td');
                     date.classList.add('td-sale');
                     date.textContent = item.date;
 
+                    let monthlySales = document.createElement('td');
+                    monthlySales.classList.add('td-sale');
+                    monthlySales.textContent = item.monthy_sales;
+                    
                     let btnDelete = document.createElement('button');
                     btnDelete.classList.add('delete-button')
                     btnDelete.innerHTML = '<i class="fa-solid fa-trash"></i>';
+                    btnDelete.onclick = function() {
+                        console.log(`O produto ${item.id} foi marcado para ser removido.`);
+                        confirm(`Tem certeza que deseja remover ${item.name}?`);
+
+                        let form = document.createElement('form');
+                        form.method = 'POST';
+                        form.action = '/deleteSale';
+                        console.log('Recebemos a ação do form - deleteSale');
+
+                        let itemId = document.createElement('input');
+                        itemId.type = 'hidden';
+                        itemId.name = 'id';
+                        itemId.value = item.id;
+
+                        form.appendChild(itemId);
+                        document.body.appendChild(form);
+                        form.submit();
+                    }
 
                     row.appendChild(id);
                     row.appendChild(product);
                     row.appendChild(amount);
                     row.appendChild(sale);
+                    row.appendChild(netProfit);
+                    row.appendChild(netMargin);
                     row.appendChild(date);
+                    row.appendChild(monthlySales);
                     row.appendChild(btnDelete);
 
                     tBody.appendChild(row);
@@ -305,6 +357,99 @@ function loadReport(){
             })
     } else if (selectValue == 'buy') {
         apiUrl = '/api/buy_report';
+        console.log('Estamos dentro da Buy API.')
+            fetch(apiUrl) // requisição os dados da API
+            .then(response => response.json()) // transformando em JSON
+            .then(data => {
+                console.log('Recebemos os dados e convertemos para JSON: ', data);
+
+                let titleTableBuy = document.getElementById('title-tables');
+                titleTableBuy.innerHTML = '';
+                titleTableBuy.textContent = 'Compra de Mercadorias';
+                titleTableBuy.style.backgroundColor = 'var(--primary-purpuraDeTiro)';
+                titleTableBuy.style.color = 'var(--fifth-laranjaClaro)';
+
+                table.classList.add('buy-table');
+
+                let tHead = document.getElementById('reports-head');
+                tHead.innerHTML = '';
+
+                let rowHead = document.createElement('tr');
+                console.log('Criada a linha do BUY HEAD.');
+
+                let id = document.createElement('th');
+                id.classList.add('th-buy');
+                id.textContent = 'ID';
+
+                let productName = document.createElement('th');
+                productName.classList.add('th-buy');
+                productName.textContent = 'Product Name';
+
+                let costValue = document.createElement('th');
+                costValue.classList.add('th-buy');
+                costValue.textContent = 'Cost Value';
+
+                let amount = document.createElement('th');
+                amount.classList.add('th-buy');
+                amount.textContent = 'Amount';
+
+                let buyDate = document.createElement('th');
+                buyDate.classList.add('th-buy');
+                buyDate.textContent = 'Buy Date';
+                
+                rowHead.appendChild(id);
+                rowHead.appendChild(productName);
+                rowHead.appendChild(costValue);
+                rowHead.appendChild(amount);
+                rowHead.appendChild(buyDate);
+
+                tHead.appendChild(rowHead);
+
+                let tBody = document.getElementById('reports-tbody');
+                tBody.innerHTML = '';
+                data.forEach(item => {
+
+                    let rowBuy = document.createElement('tr');
+
+                    let idProduct = document.createElement('td');
+                    idProduct.classList.add('td-buy');
+                    idProduct.textContent = item["id"];
+
+                    let productName = document.createElement('td');
+                    productName.classList.add('td-buy');
+                    productName.textContent = item["name"];
+
+                    let costValue = document.createElement('td');
+                    costValue.classList.add('td-buy');
+                    costValue.textContent = `R$ ${item["cost"].toFixed(2).replace('.',',')}`;
+
+                    let amountBuy = document.createElement('td');
+                    amountBuy.classList.add('td-buy');
+                    amountBuy.textContent = item["amount"];
+
+                    let buyDate = document.createElement('td');
+                    buyDate.classList.add('td-buy');
+                    buyDate.textContent = item["date"];
+
+                    let btnDelete = document.createElement('button');
+                    btnDelete.classList.add('delete-button');
+                    btnDelete.innerHTML = '<i class="fa-solid fa-trash"></i>'
+                    btnDelete.onclick = function(){
+                        console.log(`O produto ${item["name"]} foi marcado para ser removido.`);
+                        confirm(`Tem certeza que deseja remover ${item["name"]}`);
+                    }
+
+                    rowBuy.appendChild(idProduct);
+                    rowBuy.appendChild(productName);
+                    rowBuy.appendChild(costValue);
+                    rowBuy.appendChild(amountBuy);
+                    rowBuy.appendChild(buyDate);
+                    rowBuy.appendChild(btnDelete);
+
+                    tBody.appendChild(rowBuy);
+                })
+
+            })
     } else {
         console.log('Opção Inválida!');
         return;
