@@ -437,6 +437,20 @@ function loadReport(){
                     btnDelete.onclick = function(){
                         console.log(`O produto ${item["name"]} foi marcado para ser removido.`);
                         confirm(`Tem certeza que deseja remover ${item["name"]}`);
+
+                        let formBuy = document.createElement('form');
+                        formBuy.method = 'POST';
+                        formBuy.action = '/deleteBuy';
+                        console.log('Recebemos a ação do form - deleteBuy');
+
+                        let itemID = document.createElement('input');
+                        itemID.type = 'hidden';
+                        itemID.name = 'id';
+                        itemID.value = item["id"];
+
+                        formBuy.appendChild(itemID);
+                        document.body.appendChild(formBuy);
+                        formBuy.submit();
                     }
 
                     rowBuy.appendChild(idProduct);

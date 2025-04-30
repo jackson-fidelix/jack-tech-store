@@ -345,7 +345,7 @@ def get_buy_reports():
     return jsonify(buy_reports)
 
 
-@app.route('/api/deleteBuy', methods=['POST'])
+@app.route('/deleteBuy', methods=['POST'])
 def deleteBuy():
     product_id = request.form.get('id')
 
