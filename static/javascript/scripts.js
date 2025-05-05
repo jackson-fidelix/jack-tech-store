@@ -152,35 +152,35 @@ function loadReport(){
                 // para cada item cria uma célula que vai ficar dentro da linha criada
                 let id = document.createElement('td');
                 id.classList.add('td-stock');
-                id.textContent = item.id;
+                id.textContent = item["id"];
 
                 let productName = document.createElement('td');
                 productName.classList.add('td-stock');
-                productName.textContent = item.product_name;
+                productName.textContent = item["product_name"];
 
                 let amount = document.createElement('td');
                 amount.classList.add('td-stock');
-                amount.textContent = item.amount;
+                amount.textContent = item["amount"];
 
                 let cost = document.createElement('td');
                 cost.classList.add('td-stock');
-                cost.textContent = `R$ ${item.average_cost.toFixed(2).replace('.',',')}`;
+                cost.textContent = `R$ ${item["average_cost"].toFixed(2).replace('.',',')}`;
 
                 let sale = document.createElement('td');
                 sale.classList.add('td-stock');
-                sale.textContent = item.average_sale;
+                sale.textContent = item["average_sale"];
 
                 let date = document.createElement('td');
                 date.classList.add('td-stock');
-                date.textContent = item.date;
+                date.textContent = item["date"];
 
                 let deleteButtonCell = document.createElement('td');
                 let deleteButton = document.createElement('button');
                 deleteButton.innerHTML = '<i class="fa-solid fa-trash"></i>';
                 deleteButton.classList.add('delete-button');
                 deleteButton.onclick = function() {
-                    console.log(`Produto ${item.id} marcado para deletar`);
-                    if (confirm('Tem certeza que deseja excluir esse produto?')) {
+                    console.log(`Produto ${item["id"]} marcado para deletar`);
+                    if (confirm(`Tem certeza que deseja excluir ${item["product_name"]}?`)) {
 
                         let form = document.createElement('form');
                         form.method = 'POST'; // usando post para enviar o form para o Flask, pois o HTML nao suporta o DELETE
@@ -189,7 +189,7 @@ function loadReport(){
                         let productId = document.createElement('input');
                         productId.type = 'hidden'; 
                         productId.name = 'id';
-                        productId.value = item.id;
+                        productId.value = item["id"];
 
                         form.appendChild(productId);
 
@@ -289,42 +289,42 @@ function loadReport(){
 
                     let id = document.createElement('td');
                     id.classList.add('td-sale');
-                    id.textContent = item.id;
+                    id.textContent = item["id"];
 
                     let product = document.createElement('td');
                     product.classList.add('td-sale');
-                    product.textContent = item.name;
+                    product.textContent = item["name"];
 
                     let amount = document.createElement('td');
                     amount.classList.add('td-sale');
-                    amount.textContent = item.amount;
+                    amount.textContent = item["amount"];
 
                     let sale = document.createElement('td');
                     sale.classList.add('td-sale');
-                    sale.textContent = `R$ ${item.sale_value.toFixed(2).replace('.',',')}`;
+                    sale.textContent = `R$ ${item["sale_value"].toFixed(2).replace('.',',')}`;
 
                     let netProfit = document.createElement('td');
                     netProfit.classList.add('td-sale');
-                    netProfit.textContent = `R$ ${item.net_profit.toFixed(2).replace('.',',')}`;
+                    netProfit.textContent = `R$ ${item["net_profit"].toFixed(2).replace('.',',')}`;
                     
                     let netMargin = document.createElement('td');
                     netMargin.classList.add('td-sale');
-                    netMargin.textContent = `${item.net_margin.toFixed(2).replace('.', ',')}%`;
+                    netMargin.textContent = `${item["net_margin"].toFixed(2).replace('.', ',')}%`;
 
                     let date = document.createElement('td');
                     date.classList.add('td-sale');
-                    date.textContent = item.date;
+                    date.textContent = item["date"];
 
                     let monthlySales = document.createElement('td');
                     monthlySales.classList.add('td-sale');
-                    monthlySales.textContent = item.monthy_sales;
+                    monthlySales.textContent = item["monthy_sales"];
                     
                     let btnDelete = document.createElement('button');
                     btnDelete.classList.add('delete-button')
                     btnDelete.innerHTML = '<i class="fa-solid fa-trash"></i>';
                     btnDelete.onclick = function() {
-                        console.log(`O produto ${item.id} foi marcado para ser removido.`);
-                        confirm(`Tem certeza que deseja remover ${item.name}?`);
+                        console.log(`O produto ${item["id"]} foi marcado para ser removido.`);
+                        confirm(`Tem certeza que deseja remover ${item["name"]}?`);
 
                         let form = document.createElement('form');
                         form.method = 'POST';
@@ -334,7 +334,7 @@ function loadReport(){
                         let itemId = document.createElement('input');
                         itemId.type = 'hidden';
                         itemId.name = 'id';
-                        itemId.value = item.id;
+                        itemId.value = item["id"];
 
                         form.appendChild(itemId);
                         document.body.appendChild(form);
