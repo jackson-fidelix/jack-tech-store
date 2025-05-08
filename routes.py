@@ -322,7 +322,7 @@ def deleteSale():
     else:
         print(f'Produto {product_id} não encontrado ou com estoque zerado!')
     
-    return redirect(url_for("reportspage", _anchor="/api/sale_report"))
+    return redirect(url_for("reportspage"))
 
 
 @app.route('/api/buy_report', methods = ['GET'])
@@ -358,7 +358,7 @@ def deleteBuy():
     else:
         print(f'Produto {product_id} não encontrado ou com estoque ZERADO!')
     
-    return redirect(url_for("reportspage", anchor="/api/buy_report"))
+    return redirect(url_for("reportspage"))
 
 
 
