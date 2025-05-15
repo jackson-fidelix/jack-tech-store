@@ -326,19 +326,25 @@ function loadReport(){
                         console.log(`O produto ${item["id"]} foi marcado para ser removido.`);
                         confirm(`Tem certeza que deseja remover ${item["name"]}?`);
 
-                        let form = document.createElement('form');
-                        form.method = 'POST';
-                        form.action = '/deleteSale';
-                        console.log('Recebemos a ação do form - deleteSale');
-
-                        let itemId = document.createElement('input');
-                        itemId.type = 'hidden';
-                        itemId.name = 'id';
-                        itemId.value = item["id"];
-
-                        form.appendChild(itemId);
-                        document.body.appendChild(form);
-                        form.submit();
+                        fetch('/deleteSale', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({id: item["id"]})
+                        })
+                        .then(response => response.json())
+                        .then(result => {
+                            if (result.success) {
+                                alert(result.message);
+                                loadCurrentReport();            
+                            } else {
+                                alert("Erro ao deletar: " + result.message);
+                            }
+                        })
+                        .catch(error => {
+                            console.error("Erro na exclusão:", error);
+                        });
                     }
 
                     row.appendChild(id);
@@ -514,4 +520,17 @@ function showSale(message, color) {
     setTimeout(() => {
         msg.style.display = "none";
     }, 3000); // esconde a mensagem após 3 minutos
+}
+
+function loadCurrentReport() {
+    const selecValue = document.getElementById('choose-reports').value;
+    if (selecValue === 'stock') {
+        loadReport('/api/stock_report');
+    } else if (selecValue === 'sale') {
+        let tableBody = document.getElementById('reports-tbody');
+        tableBody.innerHTML = '';
+        loadReport('/api/sale_report');
+    } else if (selecValue === 'buy') {
+        loadReport('/api/buy_report');
+    }
 }
