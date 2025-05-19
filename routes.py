@@ -345,18 +345,16 @@ def get_buy_reports():
 
 @app.route('/deleteBuy', methods=['POST'])
 def deleteBuy():
-    product_id = request.form.get('id')
+    product_id = request.json.get('id')
 
     item = buy.query.filter_by(id=product_id).first()
     print(item)
     if item:
         db.session.delete(item)
         db.session.commit()
-        print(f'Produto {product_id} removido com sucesso!')
+        return jsonify({'success': True, 'message': f'Produto {product_id} removido com sucesso!'})
     else:
-        print(f'Produto {product_id} não encontrado ou com estoque ZERADO!')
-    
-    return redirect(url_for("reportspage"))
+        return jsonify({'success': False, 'message': 'Produto não encontrado!'})
 
 
 
