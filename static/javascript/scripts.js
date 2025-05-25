@@ -180,24 +180,28 @@ function loadReport(){
                 deleteButton.classList.add('delete-button');
                 deleteButton.onclick = function() {
                     console.log(`Produto ${item["id"]} marcado para deletar`);
-                    if (confirm(`Tem certeza que deseja excluir ${item["product_name"]}?`)) {
+                    confirm(`Tem certeza que deseja excluir ${item["product_name"]}?`)
 
-                        let form = document.createElement('form');
-                        form.method = 'POST'; // usando post para enviar o form para o Flask, pois o HTML nao suporta o DELETE
-                        form.action = '/deleteTr';
-
-                        let productId = document.createElement('input');
-                        productId.type = 'hidden'; 
-                        productId.name = 'id';
-                        productId.value = item["id"];
-
-                        form.appendChild(productId);
-
-                        document.body.appendChild(form);
-                        form.submit();
-                    };
-
-                };
+                    fetch('/deleteTr', {
+                        method: 'POST', 
+                        headers: {
+                            'Content-Type' : 'application/json'
+                        },
+                        body: JSON.stringify({id: item["id"]})
+                    })
+                    .then(response => response.json())
+                    .then(result => {
+                        if(result.success){
+                        alert(result.message);
+                        loadCurrentReport()
+                        }else {
+                            alert("Erro ao deletar: " + result.message);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Erro na exclusão ', error);
+                    });               
+                }
 
                 deleteButtonCell.appendChild(deleteButton);
 
